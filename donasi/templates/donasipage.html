@@ -16,9 +16,6 @@
         h5 {
             font-weight: 600;
         }
-        .hargaKeranjang {
-            font-size: 70%;
-        }
         div p {
             margin: 0;
             padding: 0;
@@ -29,23 +26,15 @@
     {% include 'navbar.html' %}
     <div class="container" style="margin-top: 2%;">
         <div class="row">
-            <div class="col-8">
+            <div class="col-10">
                 <h1 style="font-family: 'Caveat', cursive;">Donasi</h1>
             </div>
             <div class="col-2">
-                <a href="{% url 'shop:riwayat' %}">
+                <a href="{% url 'donasi:riwayatdonasi' %}">
                     <button type="button" class="btn btn-outline-dark" style="float: right;">
-                        Riwayat Transaksi
+                        Riwayat Donasi
                     </button>
                 </a>
-            </div>
-            <div class="col-2">
-                <button type="button" class="btn btn-outline-dark" style="float: right;" data-toggle="modal" data-target="#keranjangModal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
-                    </svg>
-                    Keranjang
-                </button>
             </div>
         </div>
         <div class="row row-cols-2 row-cols-sm-2" style="margin-top: 1%;">
@@ -73,12 +62,8 @@
         </div>
     </div>
     
-
-    {% include 'keranjangModal.html' %}
+    {% include 'detailModal.html' %}
     {% include 'formulirDonasiModal.html' %}
     {% include 'formulirBerhasilModal.html' %}
-    {% include 'detailModal.html' %}
-    {% include 'pengirimanModal.html' %}
-
 </body>
 </html>
