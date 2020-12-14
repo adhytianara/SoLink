@@ -1,0 +1,77 @@
+{% extends "navbar.html" %}
+
+{% block content %}
+<div class="container" style="margin-top: 2%;">
+    <div class="row">
+        <div class="col-8">
+            <h1 style="font-family: 'Caveat', cursive;">Zero Waste Shop</h1>
+        </div>
+        <div class="col-2">
+            <a href="{% url 'shop:riwayat' %}">
+                <button type="button" class="btn btn-outline-dark" style="float: right;">
+                    Riwayat Transaksi
+                </button>
+            </a>
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-outline-dark" style="float: right;" data-toggle="modal" data-target="#keranjangModal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                </svg>
+                Keranjang
+            </button>
+        </div>
+    </div>
+    <div class="container h-100">
+        <div class="row row-cols-2 row-cols-sm-4 h-100" style="margin-top: 2%;">
+            <div class="col-sm-4 justify-content-center align-self-center h-100">
+                <div class="card">
+                    <img src="https://zerowaste.id/wp-content/uploads/2020/06/IMG_0520-1.jpg" class="card-img-top">
+                    <div class="card-body">
+                        <div class="text-right">    
+                            <a href="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                    <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8 justify-content-center align-self-center h-100">
+                <div class="card">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-4"><h4>Nama Barang</h4> </div>
+                            <div class="col-sm-8"><h4>: Collapsible Sillicone Cup </h4></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"><h4>Harga</h4> </div>
+                            <div class="col-8"><h4>: Rp. 225.000 </h4></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"><h4>Rating </h4></div>
+                            <div class="col-8"><h4>: 4.5 </h4></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"><h4>Penjual</h4> </div>
+                            <div class="col-8"><h4>: Aji Inisti </h4></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"><h4>Stok</h4> </div>
+                            <div class="col-8"><h4>: 20</h4> </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"><h4>Deskripsi</h4> </div>
+                            <div class="col-8"><h4>Tempat minum dari plastik yang dapat digunakan untuk minuman hangat maupun dingin. Ukuran 450 ml</h4> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'keranjangModal.html' %}
+    {% include 'pengirimanModal.html' %}
+{% endblock%}
