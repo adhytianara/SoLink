@@ -23,7 +23,7 @@
 font-style: italic;
 }
 
-.btn-primary{
+a.btn-primary{
     background: #679186;;
     text-align: center;
     padding: 10px 20px 10px;
@@ -35,11 +35,11 @@ font-style: italic;
     right:15px;
 }
 
-.btn-primary:hover{
+a.btn-primary:hover{
     background: #4f7067;;
 }
 
-.btn-light{
+button.btn-light{
     text-align: center;
     padding: 10px 20px 10px;
     border-radius: 5px;
