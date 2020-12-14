@@ -1,0 +1,59 @@
+
+/* Form*/
+.input-fields .input,
+.isi textarea, .abstraksi textarea{
+    margin-bottom: 22px;
+    border: 0px;
+    padding: 10px;
+    width: 100%;
+    box-shadow: 0 0 3px rgba(0,0,0,0.3);
+
+}
+
+.isi textarea{
+    height: 350px;
+}
+
+.abstraksi textarea{
+    height: 180px;
+}
+
+::-webkit-input-placeholder {
+/* Chrome/Opera/Safari */
+font-style: italic;
+}
+
+.btn-primary{
+    background: #679186;;
+    text-align: center;
+    padding: 10px 20px 10px;
+    border-radius: 5px;
+    border-color: transparent;
+    color: #fff;
+    position:absolute;
+    bottom:25px;
+    right:15px;
+}
+
+.btn-primary:hover{
+    background: #4f7067;;
+}
+
+.btn-light{
+    text-align: center;
+    padding: 10px 20px 10px;
+    border-radius: 5px;
+    border-color: transparent;
+    position: absolute;
+    bottom:25px;
+    right:130px;
+
+}
+
+@media screen and (max-width: 600px){
+.input-fields,
+.isi{
+    width: 100%;
+}
+}
+/* Form */
