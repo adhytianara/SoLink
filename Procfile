@@ -1,0 +1,1 @@
+web: gunicorn solink.wsgi --log-file -
