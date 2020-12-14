@@ -1,0 +1,166 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block style %}
+<head>
+  <title>Kelola Barang - SoLink</title>
+  <style>
+    img {
+        object-fit: contain;
+        max-height: 250px;
+    }
+    </style>
+</head>
+{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 2%;">
+  <div class="row">
+    <div class="col">
+        <h1 style="font-family: 'Caveat', cursive;">Update Barang</h1>
+    </div>
+    <div class="col-2">
+      <a href="{% url 'barang:listBarang' %}">
+          <button type="button" class="btn btn-outline-dark" style="float: right;">
+            Kembali
+          </button>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="margin-top: 2%;">
+  <div class="row row-cols-2 row-cols-sm-4" style="margin-top: 1%;">
+    <div class="col mb-4">
+      <div class="card h-100">
+        <img src="https://zerowaste.id/wp-content/uploads/2020/06/IMG_0520-1.jpg" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Collapsible Sillicone Cup</h5>
+          <div class="text-right">
+              <p class="card-text">Rp 225.000</p>
+          </div>
+          <div>
+            <a href="{% url 'barang:konfirmasiUpdate' %}">
+            <button class="btn btn-outline-dark" style="float: right;">Update</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+      <div class="card h-100">
+        <img src="https://zerowaste.id/wp-content/uploads/2020/07/LRM_EXPORT_20200713_131518.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Cutlery Bamboo Set</h5>
+          <div class="text-right">
+              <p class="card-text">Rp 65.000</p>
+          </div>
+          <div>
+            <a href="{% url 'barang:konfirmasiUpdate' %}">
+            <button class="btn btn-outline-dark" style="float: right;">Update</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+      <div class="card h-100">
+        <img src="https://zerowaste.id/wp-content/uploads/2020/08/0004282_stainless-steel-lunch-box-1400-ml.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Stainless Steel Lunch Box 1400 ml</h5>
+          <div class="text-right">
+              <p class="card-text">Rp 140.000</p>
+          </div>
+          <div>
+            <a href="{% url 'barang:konfirmasiUpdate' %}">
+            <button class="btn btn-outline-dark" style="float: right;">Update</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+      <div class="card h-100">
+        <img src="https://zerowaste.id/wp-content/uploads/2020/08/0004886_reusable-cotton-pads.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Reusable Cotton Pads</h5>
+          <div class="text-right">
+              <p class="card-text">Rp 80.000</p>
+          </div>
+          <div>
+            <a href="{% url 'barang:konfirmasiUpdate' %}">
+            <button class="btn btn-outline-dark" style="float: right;">Update</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card h-100">
+          <img src="https://zerowaste.id/wp-content/uploads/2020/08/folding-lunch-11.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Foldable Lunch Box</h5>
+            <div class="text-right">
+                <p class="card-text">Rp 70.000</p>          
+            </div>
+            <div>
+                <a href="{% url 'barang:konfirmasiUpdate' %}">
+                <button class="btn btn-outline-dark" style="float: right;">Update</button>
+                </a>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-4">
+        <div class="card h-100">
+          <img src="https://zerowaste.id/wp-content/uploads/2020/11/IMG_0729-2.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Bamboo Charcoal Toothbrush Greater Good</h5>
+            <div class="text-right">
+                <p class="card-text">Rp 15.000</p>              
+            </div>
+            <div>
+                <a href="{% url 'barang:konfirmasiUpdate' %}">
+                <button class="btn btn-outline-dark" style="float: right;">Update</button>
+                </a>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-4">
+        <div class="card h-100">
+          <img src="https://zerowaste.id/wp-content/uploads/2020/06/01_paket_taskulkas_rollover-680x680-1.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Reusable Veggie Fridge Pouch</h5>
+            <div class="text-right">
+                <p class="card-text">Rp 120.000</p>         
+            </div>
+            <div>
+                <a href="{% url 'barang:konfirmasiUpdate' %}">
+                <button class="btn btn-outline-dark" style="float: right;">Update</button>
+                </a>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-4">
+        <div class="card h-100">
+          <img src="https://zerowaste.id/wp-content/uploads/2020/02/IMG_1905.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Tumblr</h5>
+            <div class="text-right">
+                <p class="card-text">Rp 200.000</p>           
+            </div>
+            <div>
+                <a href="{% url 'barang:konfirmasiUpdate' %}">
+                <button class="btn btn-outline-dark" style="float: right;">Update</button>
+                </a>
+              </div>
+          </div>
+        </div>
+      </div>
+  </div>  
+</div>
+
+{% include 'konfirmasiHapus.html' %}
+
+{% endblock %}

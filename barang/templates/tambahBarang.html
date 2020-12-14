@@ -1,0 +1,100 @@
+{% extends 'navbar.html' %}
+
+{% block content %} 
+
+{{ form.non_field_errors }}
+<div class="container" style="margin-top: 2%;">
+    <div class="row">
+        <div class="col">
+            <h1 style="font-family: 'Caveat', cursive;">Tambah Barang</h1>
+        </div>
+        
+        <div class="col-2">
+            <a href="{% url 'barang:listBarang' %}">
+                <button type="button" class="btn btn-outline-dark" style="float: right;">
+                    Kembali
+                </button>
+            </a>
+        </div>
+    </div>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <div class="fieldWrapper">
+            {{ form.subject.errors }}
+            <div class="row">
+                <div class="col-2">
+                    <label for="{{ form.subject.id_for_label }}">Nama Barang:</label>
+                </div>
+                <div class="col">
+                    {{ form.namaBarang }}
+                </div>
+            </div>
+        </div>
+        <div class="fieldWrapper">
+            {{ form.subject.errors }}
+            <div class="row">
+                <div class="col-2">
+                    <label for="{{ form.subject.id_for_label }}">UrlFoto:</label>
+                </div>
+                <div class="col">
+                    {{ form.urlFoto }}
+                </div>
+            </div>
+        </div>
+        <div class="fieldWrapper">
+            {{ form.subject.errors }}
+            <div class="row">
+                <div class="col-2">
+                    <label for="{{ form.subject.id_for_label }}">Harga Barang:</label>
+                </div>
+                <div class="col">
+                    {{ form.hargaBarang }}
+                </div>
+            </div>
+        </div>
+        <div class="fieldWrapper">
+            {{ form.subject.errors }}
+            <div class="row">
+                <div class="col-2">
+                    <label for="{{ form.subject.id_for_label }}">Jumlah Stok:</label>
+                </div>
+                <div class="col">
+                    {{ form.jumlahStok }}
+                </div>
+            </div>
+        </div>
+        <div class="fieldWrapper">
+            {{ form.subject.errors }}
+            <div class="row">
+                <div class="col-2">
+                    <label for="{{ form.subject.id_for_label }}">Deskripsi Barang:</label>
+                </div>
+                <div class="col">
+                    {{ form.deskripsiBarang }}
+                </div>
+            </div>
+        </div>
+        <input type="submit" name="submit" value ="Submit" class="btn btn-outline-success" id ="tombol">
+    </form>
+</div>
+
+{% endblock %}
+{% block script %}
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$("#id_namaBarang").keypress(
+    function myFunction() {
+        var data = $("#id_namaBarang").val();
+        if (data.includes("@gmail") || data.includes("@ui") || data.includes("@yahoo")) {
+            $("#salah").empty();
+            $("#id_button").prop('disabled',false);
+        }else{
+            $("#salah").empty();
+            $("#id_button").prop('disabled',true);
+            $("#salah").append("Email yang anda masukkan tidak valid");
+        }
+    }
+)
+</script> -->
+{% endblock%}
