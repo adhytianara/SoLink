@@ -6,3 +6,6 @@ def donasipage(request):
 
 def riwayatdonasi(request):
     return render(request, 'riwayatdonasi.html', {})
+
+def formulirdonasi(request):
+    return render(request, 'lembaga-sosial/ls-formulirdonasi.html', {})
