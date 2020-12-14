@@ -40,7 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'shop',
+<<<<<<< HEAD
     'barang'
+=======
+    'donasi'
+>>>>>>> 72280c48b1c37a41223584677d2d7d34a4fa44d5
 ]
 
 MIDDLEWARE = [
@@ -123,6 +127,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
