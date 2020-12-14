@@ -1,8 +1,8 @@
-<div class="modal fade" id="riwayatModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="riwayatModalLabel" aria-hidden="true">
+<div class="modal fade" id="mtr_riwayatModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="mtr_riwayatModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="riwayatModalLabel">Transaksi #x</h5>
+          <h5 class="modal-title" id="mtr_riwayatModalLabel">Transaksi #x</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col">
                     <b>Status</b>
-                    <p>Sedang Dikirim</p>
+                    <p>Sedang Dikemas</p>
                 </div>
             </div>
             <hr>
@@ -53,6 +53,13 @@
                 <div class="col-5 col-sm-3">
                     <span id="ongkir">30.000</span>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    <a href="{% url 'mtr_shop:pengiriman' %}">Input resi pengiriman</a>
+                </div>
+                <div class="col-4"></div>
+                <div class="col-5 col-sm-3"></div>
             </div>
             <hr>
             <div class="row">
