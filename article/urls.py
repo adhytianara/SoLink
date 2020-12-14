@@ -5,7 +5,7 @@ app_name = 'article'
 
 urlpatterns = [
     path('', views.articleList, name='articleList'),
-    path('view/', views.articleView, name='articleView'),
-    path('create/', views.createArticle, name='createArticle'),
-    path('edit/', views.editArticle, name='editArticle'),
+    path('viewArticle/', views.articleView, name='articleView'),
+    path('createArticle/', views.createArticle, name='createArticle'),
+    path('editArticle/', views.editArticle, name='editArticle'),
 ]

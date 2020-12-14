@@ -10,16 +10,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet"></head>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/editArticle.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/editArticle2.css' %}">
 
 </head>
 
 <body style="background-color: #bbd4ce; font-family: 'Nunito', sans-serif;">
     {% include 'navbar.html' %}
-    <h3 style="text-align: center; padding:28px;">Halaman Kelola Artikel</h3>
+    <h3 style="text-align: center; padding:28px 0px 20px;">Halaman Kelola Artikel</h3>
     <div class="container">
         <div class="row">
         <div class="col-md-10 offset-md-1">
+            <a class="btn btn-success" href="{% url 'article:createArticle' %}" role="button">Buat Artikel &#43;</a>
+            <br><br>
             <div class="post-preview">
             <a href="{% url 'article:articleView' %}">
                 <h2 class="post-title">
@@ -31,7 +33,7 @@
             </a>
             <p class="post-meta">Posted on 07.01.2017
             </p>
-            <a class="btn btn-primary" href="{% url 'article:createArticle' %}" role="button">Ubah</a>
+            <a class="btn btn-light" href="{% url 'article:createArticle' %}" role="button">Ubah</a>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Hapus</button> 
             </div>
             <hr>
@@ -45,7 +47,7 @@
                 </h3>
             </a>
             <p class="post-meta">Posted on 07.01.2017</p>
-            <a class="btn btn-primary" href="{% url 'article:createArticle' %}" role="button">Ubah</a>
+            <a class="btn btn-light" href="{% url 'article:createArticle' %}" role="button">Ubah</a>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Hapus</button> 
             </div>
             <hr>
@@ -59,7 +61,7 @@
                 </h3>
             </a>
             <p class="post-meta">Posted on 07.01.2017</p>
-            <a class="btn btn-primary" href="{% url 'article:createArticle' %}" role="button">Ubah</a>
+            <a class="btn btn-light" href="{% url 'article:createArticle' %}" role="button">Ubah</a>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Hapus</button> 
             </div>
             <hr>
@@ -73,7 +75,7 @@
                 </h3>
             </a>
             <p class="post-meta">Posted on 07.01.2017</p>
-            <a class="btn btn-primary" href="{% url 'article:createArticle' %}" role="button">Ubah</a>
+            <a class="btn btn-light" href="{% url 'article:createArticle' %}" role="button">Ubah</a>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Hapus</button> 
             </div>
             <hr>
