@@ -1,0 +1,22 @@
+<div class="modal fade" id="ls-donasiSelesaiModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="ls-donasiSelesaiModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <h5>Proses donasi selesai</h5>
+        <p>Status donasi :Selesai</p>
+      </div>
+      <div class="text-center mb-4">
+        <button onclick="setujuiDonasi()" type="button" class="btn btn-primary btn-center" data-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function setujuiDonasi() {
+    document.getElementById("statusDonasi").innerText = "Menunggu pengiriman";
+    document.getElementById("btnSetujui").disabled = true;
+    document.getElementById("btnTolak").disabled = true;
+  }
+</script> 

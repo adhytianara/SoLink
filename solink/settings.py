@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'shop',
     'barang',
     'donasi',
-
 ]
 
 MIDDLEWARE = [
