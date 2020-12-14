@@ -39,12 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
+    'article',
     'shop',
-<<<<<<< HEAD
-    'barang'
-=======
-    'donasi'
->>>>>>> 72280c48b1c37a41223584677d2d7d34a4fa44d5
+    'barang',
+    'donasi',
+
 ]
 
 MIDDLEWARE = [
