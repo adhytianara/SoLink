@@ -18,8 +18,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('home.urls')),
+    path('', include('article.urls')),
     path('shop/', include('shop.urls')),
+    path('barang/', include('barang.urls')),
     path('donasi/', include('donasi.urls')),
+    path('mitra/', include('shop.mitra_urls')),
     path('lembaga-sosial/', include('donasi.urls')),
 ]

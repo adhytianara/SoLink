@@ -1,0 +1,78 @@
+<div class="modal fade" id="mtr_riwayatModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="mtr_riwayatModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="mtr_riwayatModalLabel">Transaksi #x</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col">
+                    <b>Status</b>
+                    <p>Sedang Dikemas</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row" style="font-weight: 700;">
+                <div class="col-6 col-sm-8">Items</div>
+                <div class="col-1">Qty</div>
+                <div class="col-5 col-sm-3">Subtotal</div>
+            </div>
+            <div class="row">
+                <div class="col-6 col-sm-8">
+                    <span>Tumblr</span>
+                    <span class="hargaKeranjang">[Rp 200.000]</span>
+                </div>
+                <div class="col-1">2</div>
+                <div class="col-5 col-sm-3">Rp 400.000</div>
+            </div>
+            <div class="row">
+                <div class="col-6 col-sm-8">
+                    <span>Cutlery Bamboo Set</span>
+                    <span class="hargaKeranjang">[Rp 65.000]</span>
+                </div>
+                <div class="col-1">1</div>
+                <div class="col-5 col-sm-3">Rp 65.000</div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-9">
+                    <span><b>Metode pengiriman</b>:</span>
+                </div>
+                <div class="col-5 col-sm-3">
+                    <span><b>Biaya</b></span>
+                </div>
+            </div>  
+            <div class="row">
+                <div class="col-5">
+                    <span>Standard</span>
+                </div>
+                <div class="col-4"></div>
+                <div class="col-5 col-sm-3">
+                    <span id="ongkir">30.000</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    <a href="{% url 'mtr_shop:pengiriman' %}">Input resi pengiriman</a>
+                </div>
+                <div class="col-4"></div>
+                <div class="col-5 col-sm-3"></div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-6 col-sm-8" style="text-align: right; font-weight: 700;">
+                    <span>Total</span>
+                </div>
+                <div class="col-1">3</div>
+                <div class="col-5 col-sm-3">Rp 465.000</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
