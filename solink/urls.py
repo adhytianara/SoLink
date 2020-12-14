@@ -20,9 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
     path('shop/', include('shop.urls')),
-<<<<<<< HEAD
     path('barang/', include('barang.urls')),
-=======
     path('donasi/', include('donasi.urls')),
->>>>>>> 72280c48b1c37a41223584677d2d7d34a4fa44d5
 ]
