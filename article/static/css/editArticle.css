@@ -1,0 +1,66 @@
+.post-preview{
+    background-color: rgba(255, 255, 255, 0.288);
+    padding: 15px;
+}
+
+.post-preview > a {
+  color: #212529;
+}
+
+.post-preview > a:focus, .post-preview > a:hover {
+  text-decoration: none;
+  color: #679186;
+}
+
+.post-preview > a > .post-title {
+  font-size: 20px;
+  font-weight: bolder;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.post-preview > a > .post-subtitle {
+  font-size: 20px;
+  margin: 0 0 10px;
+}
+
+.post-preview > .post-meta {
+  font-size: 15px;
+  font-style: italic;
+  margin-top: 0;
+  color: #868e96;
+}
+
+.post-preview > .post-meta > a {
+  text-decoration: none;
+  color: #212529;
+}
+
+.btn-primary{
+    background: #679186;;
+    text-align: center;
+    padding: 5px 20px 5px;
+    border-radius: 5px;
+    border-color: transparent;
+    color: #fff !important;
+}
+
+.btn-danger{
+    background: #db2540;;
+    text-align: center;
+    padding: 5px 20px 5px;
+    border-radius: 5px;
+    border-color: transparent;
+    color: #fff;
+}
+
+.btn-primary:hover{
+    background: #4f7067;;
+}
+
+@media only screen and (min-width: 768px) {
+  .post-preview > a > .post-title {
+    font-size: 26px;
+  }
+}
+
