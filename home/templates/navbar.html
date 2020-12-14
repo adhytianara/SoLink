@@ -29,6 +29,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="{% url 'article:editArticle' %}">Kelola Artikel</a>
+            <a class="dropdown-item" href="{% url 'donasi:pembatalandonasi' %}">Pembatalan Donasi</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -38,6 +39,14 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="{% url 'barang:listBarang' %}">Kelola Barang</a>
             <a class="dropdown-item" href="{% url 'mtr_shop:penjualan' %}">Transaksi Penjualan</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            role : Lembaga Sosial
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="{% url 'donasi:formulirdonasi' %}">Formulir Donasi</a>
           </div>
         </li>
         <li class="nav-item">
