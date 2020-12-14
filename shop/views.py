@@ -9,3 +9,6 @@ def checkout(request):
 
 def riwayat(request):
     return render(request, 'riwayat.html', {})
+
+def deskripsi(request):
+    return render(request, 'deskripsiBarang.html', {})

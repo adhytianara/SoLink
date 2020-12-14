@@ -19,6 +19,16 @@
         .hargaKeranjang {
             font-size: 70%;
         }
+        .wrap{
+          position: relative;
+        }
+        .wrap a{
+          position: absolute;
+          width:100%;
+          height:100%;
+          top:0px;
+          left:0px;
+        }
     </style>
 </head>
 <body style="background-color: #bbd4ce; font-family: 'Nunito', sans-serif;">
@@ -46,137 +56,145 @@
         </div>
         <div class="row row-cols-2 row-cols-sm-4" style="margin-top: 1%;">
             <div class="col mb-4">
-              <div class="card h-100">
+              <div class="card h-100 wrap">
+                <a href="{% url 'shop:deskripsi' %}"></a>
                 <img src="https://zerowaste.id/wp-content/uploads/2020/06/IMG_0520-1.jpg" class="card-img-top">
                 <div class="card-body">
                   <h5 class="card-title">Collapsible Sillicone Cup</h5>
                   <div class="text-right">
                       <p class="card-text">Rp 225.000</p>
-                      <a href="">
+                      <!-- <a href="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                             <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
                         </svg>
-                      </a>
+                      </a> -->
                   </div>
                 </div>
               </div>
             </div>
             <div class="col mb-4">
-              <div class="card h-100">
+              <div class="card h-100 wrap">
+                <a href="{% url 'shop:deskripsi' %}"></a>
                 <img src="https://zerowaste.id/wp-content/uploads/2020/07/LRM_EXPORT_20200713_131518.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Cutlery Bamboo Set</h5>
                   <div class="text-right">
                       <p class="card-text">Rp 65.000</p>
-                      <a href="">
+                      <!-- <a href="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                             <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
                         </svg>
-                      </a>
+                      </a> -->
                   </div>
                 </div>
               </div>
             </div>
             <div class="col mb-4">
-              <div class="card h-100">
+              <div class="card h-100 wrap">
+                <a href="{% url 'shop:deskripsi' %}"></a>
                 <img src="https://zerowaste.id/wp-content/uploads/2020/08/0004282_stainless-steel-lunch-box-1400-ml.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Stainless Steel Lunch Box 1400 ml</h5>
                   <div class="text-right">
                       <p class="card-text">Rp 140.000</p>
-                      <a href="">
+                      <!-- <a href="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                             <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
                         </svg>
-                      </a>
+                      </a> -->
                   </div>
                 </div>
               </div>
             </div>
             <div class="col mb-4">
-              <div class="card h-100">
+              <div class="card h-100 wrap">
+                <a href="{% url 'shop:deskripsi' %}"></a>
                 <img src="https://zerowaste.id/wp-content/uploads/2020/08/0004886_reusable-cotton-pads.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Reusable Cotton Pads</h5>
                   <div class="text-right">
                       <p class="card-text">Rp 80.000</p>
-                      <a href="">
+                      <!-- <a href="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                             <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
                         </svg>
-                      </a>
+                      </a> -->
                   </div>
                 </div>
               </div>
             </div>
             <div class="col mb-4">
-                <div class="card h-100">
+              <div class="card h-100 wrap">
+                <a href="{% url 'shop:deskripsi' %}"></a>
                   <img src="https://zerowaste.id/wp-content/uploads/2020/08/folding-lunch-11.jpg" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Foldable Lunch Box</h5>
                     <div class="text-right">
                         <p class="card-text">Rp 70.000</p>
-                        <a href="">
+                        <!-- <a href="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                                 <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
                             </svg>
-                        </a>                    
+                        </a>                     -->
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col mb-4">
-                <div class="card h-100">
+                <div class="card h-100 wrap">
+                  <a href="{% url 'shop:deskripsi' %}"></a>
                   <img src="https://zerowaste.id/wp-content/uploads/2020/11/IMG_0729-2.jpg" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Bamboo Charcoal Toothbrush Greater Good</h5>
                     <div class="text-right">
                         <p class="card-text">Rp 15.000</p>
-                        <a href="">
+                        <!-- <a href="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                                 <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
                             </svg>
-                        </a>                    
+                        </a>                     -->
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col mb-4">
-                <div class="card h-100">
+                <div class="card h-100 wrap">
+                  <a href="{% url 'shop:deskripsi' %}"></a>
                   <img src="https://zerowaste.id/wp-content/uploads/2020/06/01_paket_taskulkas_rollover-680x680-1.jpg" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Reusable Veggie Fridge Pouch</h5>
                     <div class="text-right">
                         <p class="card-text">Rp 120.000</p>
-                        <a href="">
+                        <!-- <a href="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                                 <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
                             </svg>
-                        </a>                    
+                        </a>                     -->
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col mb-4">
-                <div class="card h-100">
+                <div class="card h-100 wrap">
+                  <a href="{% url 'shop:deskripsi' %}"></a>
                   <img src="https://zerowaste.id/wp-content/uploads/2020/02/IMG_1905.jpg" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Tumblr</h5>
                     <div class="text-right">
                         <p class="card-text">Rp 200.000</p>
-                        <a href="">
+                        <!-- <a href="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                                 <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
                             </svg>
-                        </a>                    
+                        </a>                     -->
                     </div>
                   </div>
                 </div>
