@@ -1,7 +1,8 @@
 from django.db import models
 
 # Create your models here.
-class BarangModel(models.Model):
+class Barang(models.Model):
+    namaPemilik = models.CharField(max_length = 50)
     idBarang = models.IntegerField()
     namaBarang = models.CharField(max_length = 50)
     deskripsiBarang = models.TextField()
@@ -10,3 +11,10 @@ class BarangModel(models.Model):
     jumlahStok = models.IntegerField()
     rating = models.FloatField()
     stokRate = models.IntegerField()
+
+    def updateNama(self,nama):
+        self.update
+    
+    def updateDeskripsi(self,deksripsi):
+        self.deskripsiBarang = deksripsi
+    
