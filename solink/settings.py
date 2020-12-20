@@ -89,6 +89,12 @@ DATABASES = {
     }
 }
 
+# If using Heroku environemnt, then use database setting on Heroku
+PRODUCTION = os.environ.get('DATABASE_URL') is not None
+if PRODUCTION:
+    # DEBUG = False
+    DATABASES['default'] = dj_database_url.config()
+    SECURE_SSL_REDIRECT = True
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
