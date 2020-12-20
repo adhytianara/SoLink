@@ -1,10 +1,18 @@
-<div class="container">
-    <div class="row row-cols-2 row-cols-sm-4" style="margin-top: 1%;">
-          <div class="card h-100">
-            <img src="https://zerowaste.id/wp-content/uploads/2020/06/IMG_0520-1.jpg" class="card-img-top">
-            <div class="card-body">
-              <h5>Apakah ingin menghapus ?</h5>
-            </div>
-          </div>
+<div class="modal fade" id="konfirmasiHapus" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="konfirmasiHapusLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="konfirmasiHapusLabel">Hapus Barang !!!</h5>
+        </div>
+        <div class="modal-body">
+            <h3>Apakah anda akan menghapus <strong>Tumbler</strong>?</h3>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">Batal</button>
+          <a href="{% url 'barang:listBarang' %}">
+            <button type="button" class="btn btn-primary">Hapus</button>
+        </a>
+        </div>
+      </div>
     </div>
-</div>
+  </div>

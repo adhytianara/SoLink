@@ -23,6 +23,4 @@ urlpatterns = [
     path('barang/', include('barang.urls')),
     path('donasi/', include('donasi.urls')),
     path('mitra/', include('shop.mitra_urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('loginin/', include('loginin.urls')),
 ]
