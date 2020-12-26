@@ -34,3 +34,6 @@ class DonasiManager:
         
     def updateStatusDonasi(self, idDonasi, status):
         DonasiModel.objects.filter(id=idDonasi).update(status=status)
+
+    def deleteAllDonasi(self):
+        DonasiModel.objects.all().delete()
