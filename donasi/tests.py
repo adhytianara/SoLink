@@ -159,3 +159,9 @@ class DonasiKontributorTest(TestCase):
             donasi = e
 
         self.assertEqual(donasi.status, status)  
+
+    
+    def testDeleteAllDonasi(self):
+        self.assertEqual(DonasiModel.objects.all().count(),1)
+        response = Client().get('/donasi/delete-all/')
+        self.assertEqual(DonasiModel.objects.all().count(),0)
