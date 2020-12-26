@@ -1,0 +1,41 @@
+<div class="modal fade" id="detailModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detailModalLabel">Detail Yayasan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5 id="namaLs" class="text-center"></h5>
+        <img id="urlFoto" src="" class="card-img-top">
+
+        <p class="font-weight-bold mt-3">Deskripsi :</p>
+        <p id="deskripsi"></p>
+        
+        <p class="font-weight-bold mt-3">Nama Pimpinan :</p>
+        <p id="namaPimpinan"></p>
+
+        <p class="font-weight-bold mt-3">Jenis :</p>
+        <p id="jenis"></p>
+
+        <p class="font-weight-bold mt-3">Kapasitas :</p>
+        <p id="kapasitas"></p>
+
+        <p class="font-weight-bold mt-3">Kebutuhan :</p>
+        <p id="kebutuhan"></p>
+
+        <p class="font-weight-bold mt-3">Nomor Telepon Yayasan :</p>
+        <p id="nomorTeleponLs"></p>
+
+        <p class="font-weight-bold mt-3">Alamat :</p>
+        <p id="alamat"></p>
+      </div>
+      <div class="modal-footer mt-5">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+        <button onclick="displayLsDataforFormulir()" type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#formulirDonasiModal">Donasi</button>
+      </div>
+    </div>
+  </div>
+</div>

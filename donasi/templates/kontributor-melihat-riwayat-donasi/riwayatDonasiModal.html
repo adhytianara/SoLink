@@ -1,0 +1,35 @@
+<div class="modal fade" id="riwayatDonasiModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="riwayatDonasiModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="riwayatDonasiModalLabel">Rincian Donasi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5 id="rincian-namaLs" class="text-center">Panti Asuhan Yatim Piatu PKU Aisyiyah Blambangan</h5>
+        <img id="rincian-urlFoto" src="https://i.ibb.co/jzr0xHd/aisyiyah.jpg" class="card-img-top">
+
+        <p class="font-weight-bold mt-3">Status donasi :</p>
+        <p id="rincian-status">Menunggu persetujuan lembaga sosial</p>
+
+        <p class="font-weight-bold mt-3">Tanggal donasi :</p>
+        <p id="rincian-tanggalDonasi">dd/mm/yyy</p>
+
+        <p class="font-weight-bold mt-3">Jenis barang :</p>
+        <p id="rincian-jenisBarang">Pakaian</p>
+
+        <p class="font-weight-bold mt-3">Metode Pengiriman :</p>
+        <p id="rincian-metodePengiriman">Antar Sendiri</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+        <button id="rincian-btnBatalkanDonasi" style="display: none;" type="button" class="btn btn-danger"
+          data-dismiss="modal" data-toggle="modal" data-target="#batalkanDonasiModal">Batalkan Donasi</button>
+      </div>
+    </div>
+  </div>
+</div>
