@@ -1,4 +1,11 @@
-from django.test import TestCase
+from django.test import TestCase, Client , RequestFactory
+from django.urls import resolve
+from .models import Barang
+from loginin.models import Profile
+from .forms import TambahBarangForm,UpdateBarangForm,HapusBarangForm
+from .views import listBarang
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
 
 # Create your tests here.
 class BarangTest(TestCase):
