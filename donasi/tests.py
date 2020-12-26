@@ -137,3 +137,25 @@ class DonasiKontributorTest(TestCase):
             donasi = e
 
         self.assertEqual(donasi.status, "Ditolak")
+
+
+    def testAdminValidasiPembatalanDonasi(self):
+        status = "Permohonan pembatalan donasi dari donatur telah ditolak karena alasan yang tidak valid. Harap tunggu respon dari lembaga sosial"
+        payload = {
+            "idDonasi": 1,
+            "status": status,
+            "alasanPembatalan": ""
+        };
+
+        for e in DonasiModel.objects.all():
+            donasi = e
+
+        self.assertEqual(donasi.status, "Menunggu persetujuan lembaga sosial")
+
+        response = Client().post('/donasi/admin/pembatalan-donasi/',payload)
+        self.assertEqual(response.status_code,200)
+
+        for e in DonasiModel.objects.all():
+            donasi = e
+
+        self.assertEqual(donasi.status, status)  
