@@ -32,8 +32,19 @@ def donasipage(request):
     return render(request, 'kontributor-melakukan-donasi/donasipage.html', {'data': data})
 
 
+@csrf_exempt
 def riwayatdonasi(request):
-    return render(request, 'kontributor-melihat-riwayat-donasi/riwayatdonasi.html', {})
+    donasi = DonasiManager.getInstance()
+    if request.method == "POST":
+        idDonasi = request.POST['idDonasi']
+        alasanPembatalan = request.POST['alasanPembatalan']
+
+        status = "Donatur mengajukan pembatalan. Sedang diproses admin"
+        donasi.cancelDonasi(idDonasi, status, alasanPembatalan)
+
+    data = donasi.getAllDonasi()
+    return render(request, 'kontributor-melihat-riwayat-donasi/riwayatdonasi.html', {'data': data})
+
 
 def formulirdonasi(request):
     return render(request, 'lembaga-sosial/ls-formulirdonasi.html', {})

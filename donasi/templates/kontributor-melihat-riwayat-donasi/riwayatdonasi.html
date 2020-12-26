@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riwayat Donasi - SoLink</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet"></head>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        div p {
-            margin: 0;
-            padding: 0;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
 </head>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+    div p {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
 <body style="background-color: #bbd4ce; font-family: 'Nunito', sans-serif;">
     {% include 'navbar.html' %}
     <div class="container" style="margin-top: 2%;">
@@ -23,24 +26,81 @@
                 <h1 style="font-family: 'Caveat', cursive;">Riwayat Donasi</h1>
             </div>
         </div>
+
+        {% for d in data %}
         <div class="row row-cols-1 ">
             <div class="col mb-4">
-              <div class="card">
-                <div class="card-body">
-                    <button type="button" class="btn btn-outline-dark" style="float: right;" data-toggle="modal" data-target="#riwayatDonasiModal">
-                        Lihat rincian
-                    </button> 
-                    <h5 class="card-title">Panti Asuhan Yatim Piatu PKU Aisyiyah Blambangan</h5>
-                    <p><b>Status donasi : </b>Menunggu persetujuan lembaga sosial</p>
-                    <p><b>Tanggal donasi : </b> dd/mm/yyy</p>
+                <div class="card">
+                    <div class="card-body">
+                        <button
+                            onclick="setLsDataforRincian('{{d.id}}','{{d.lembagaSosial.namaLs}}','{{d.lembagaSosial.urlFoto}}','{{d.status}}','{{d.tanggalDonasi}}','{{d.jenisBarang}}','{{d.metodePengiriman}}')"
+                            type="button" class="btn btn-outline-dark" style="float: right;" data-toggle="modal"
+                            data-target="#riwayatDonasiModal">
+                            Lihat rincian
+                        </button>
+                        <h5 class="card-title">{{d.lembagaSosial.namaLs}}</h5>
+                        <p><b>Tanggal donasi : </b>{{d.tanggalDonasi}}</p>
+                        {% if d.metodePengiriman == "Antar Sendiri" %}
+                        <p><b>Tanggal Pengiriman : </b>{{d.tanggalPengiriman}}</p>
+                        {% else %}
+                        <p><b>Alamat Penjemputan : </b>{{d.alamatJemput}}</p>
+                        {% endif %}
+                        <p><b>Status donasi : </b>{{d.status}}</p>
+                        {% if d.alasanPembatalan != "" %}
+                        <p><b>Alasan : </b>{{d.alasanPembatalan}}</p>
+                        {% endif %}
+                    </div>
                 </div>
-              </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-
     {% include 'kontributor-melihat-riwayat-donasi/riwayatDonasiModal.html' %}
     {% include 'kontributor-melihat-riwayat-donasi/batalkanDonasiModal.html' %}
     {% include 'kontributor-melihat-riwayat-donasi/batalkanDiprosesModel.html' %}
 </body>
+
+<script>
+    var idDonasi;
+    const setLsDataforRincian = (idDonasi, namaLs, urlFoto, status, tanggalDonasi, jenisBarang, metodePengiriman) => {
+        this.idDonasi = idDonasi;
+        document.getElementById("rincian-namaLs").innerHTML = namaLs;
+        document.getElementById("rincian-urlFoto").src = urlFoto;
+        document.getElementById("rincian-status").innerHTML = status;
+        document.getElementById("rincian-tanggalDonasi").innerHTML = tanggalDonasi;
+        document.getElementById("rincian-jenisBarang").innerHTML = jenisBarang;
+        document.getElementById("rincian-metodePengiriman").innerHTML = metodePengiriman;
+        if (status == "Menunggu persetujuan lembaga sosial") {
+            document.getElementById("rincian-btnBatalkanDonasi").style.display = "block";
+        } else {
+            document.getElementById("rincian-btnBatalkanDonasi").style.display = "none";
+        }
+    }
+    const checkData = () => {
+        alasanPembatalan = document.getElementById("alasanPembatalan").value;
+        warning = document.getElementById("warningEmptyData");
+        warningText = document.getElementById("warningText");
+        if (alasanPembatalan == "") {
+            warningText.innerText = "Alasan pembatalan tidak boleh kosong";
+            warning.style.display = "block";
+        } else {
+            $('#batalkanDiprosesModel').modal('show')
+            $('#batalkanDonasiModal').modal('hide')
+        }
+    }
+    const cancelDonation = () => {
+        alasanPembatalan = document.getElementById("alasanPembatalan").value;
+        var data = {
+            idDonasi: this.idDonasi,
+            alasanPembatalan: alasanPembatalan,
+        };
+        $.ajax({
+            type: "POST",
+            url: '/donasi/riwayat-donasi/',
+            data: data
+        })
+        location.reload()
+    }
+</script>
+
 </html>

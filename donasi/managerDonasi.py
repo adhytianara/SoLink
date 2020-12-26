@@ -22,3 +22,9 @@ class DonasiManager:
         metodePengiriman=metodePengiriman,tanggalPengiriman=tanggalPengiriman,alamatJemput=alamatJemput,
         namaDonatur=namaDonatur,tanggalDonasi=tanggalDonasi)
         donasiModel.save()
+
+    def getAllDonasi(self):
+        return DonasiModel.objects.all()
+
+    def cancelDonasi(self, idDonasi, status, alasanPembatalan):
+        DonasiModel.objects.filter(id=idDonasi).update(status=status, alasanPembatalan=alasanPembatalan)
