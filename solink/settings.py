@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'shop',
     'barang',
     'donasi',
+    'loginin',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +63,7 @@ ROOT_URLCONF = 'solink.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,6 +89,12 @@ DATABASES = {
     }
 }
 
+# If using Heroku environemnt, then use database setting on Heroku
+PRODUCTION = os.environ.get('DATABASE_URL') is not None
+if PRODUCTION:
+    # DEBUG = False
+    DATABASES['default'] = dj_database_url.config()
+    SECURE_SSL_REDIRECT = True
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -126,3 +134,5 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
+LOGIN_REDIRECT_URL = "/loginin"
+LOGOUT_REDIRECT_URL = "/loginin"
