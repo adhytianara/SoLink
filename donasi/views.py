@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from donasi.managerLembagaSosial import LembagaSosialManager
 from donasi.managerDonasi import DonasiManager
+from .createLSforms import LembagaSosialForm
 from datetime import date
 
 
@@ -51,3 +52,14 @@ def formulirdonasi(request):
 
 def pembatalandonasi(request):
     return render(request, 'admin/admin-daftarPembatalanDonasi.html', {})
+
+def createLembagaSosial(request):
+    form = LembagaSosialForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        form = LembagaSosialForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'lembaga-sosial/createLembagaSosial.html', context)
