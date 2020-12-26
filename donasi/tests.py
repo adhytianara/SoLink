@@ -35,3 +35,42 @@ class DonasiKontributorTest(TestCase):
         self.assertEqual(response.status_code,200)
         
         self.assertEqual(DonasiModel.objects.all().count(),2)
+
+
+    def testMelihatRiwayatDonasi(self):
+        response = Client().get('/donasi/riwayat-donasi/')
+        self.assertEqual(response.status_code,200)
+
+
+    def testGetIntanceManager(self):
+        LembagaSosialManager.getInstance()
+        try:
+            LembagaSosialManager()
+        except:
+            print("This class is a singleton!")
+
+        DonasiManager.getInstance()
+        try:
+            DonasiManager()
+        except:
+            print("This class is a singleton!")
+
+
+    def testBatalkanDonasi(self):
+        payload = {
+            "idDonasi": 1,
+            "alasanPembatalan": "Berubah pikiran",
+        };
+
+        for e in DonasiModel.objects.all():
+            donasi = e
+
+        self.assertEqual(donasi.status, "Menunggu persetujuan lembaga sosial")
+
+        response = Client().post('/donasi/riwayat-donasi/',payload)
+        self.assertEqual(response.status_code,200)
+
+        for e in DonasiModel.objects.all():
+            donasi = e
+
+        self.assertEqual(donasi.status, "Donatur mengajukan pembatalan. Sedang diproses admin")
