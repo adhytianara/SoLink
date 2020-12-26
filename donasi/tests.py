@@ -96,3 +96,44 @@ class DonasiKontributorTest(TestCase):
         self.assertEqual(response.status_code,200)
 
         self.assertEqual(LembagaSosialModel.objects.all().count(),2)
+
+
+    def testLembagaSosialSetujuiDonasi(self):
+        payload = {
+            "idDonasi": 1,
+            "status": "Menunggu pengiriman",
+        };
+
+        for e in DonasiModel.objects.all():
+            donasi = e
+
+        self.assertEqual(donasi.status, "Menunggu persetujuan lembaga sosial")
+
+        response = Client().post('/donasi/lembaga-sosial/formulir-donasi/',payload)
+        self.assertEqual(response.status_code,200)
+
+        for e in DonasiModel.objects.all():
+            donasi = e
+
+        self.assertEqual(donasi.status, "Menunggu pengiriman")
+
+
+    def testLembagaSosialTolakDonasi(self):
+        payload = {
+            "idDonasi": 1,
+            "status": "Ditolak",
+            "alasanPenolakan": "Sedang tidak menerima bantuan"
+        };
+
+        for e in DonasiModel.objects.all():
+            donasi = e
+
+        self.assertEqual(donasi.status, "Menunggu persetujuan lembaga sosial")
+
+        response = Client().post('/donasi/lembaga-sosial/formulir-donasi/',payload)
+        self.assertEqual(response.status_code,200)
+
+        for e in DonasiModel.objects.all():
+            donasi = e
+
+        self.assertEqual(donasi.status, "Ditolak")
