@@ -74,3 +74,25 @@ class DonasiKontributorTest(TestCase):
             donasi = e
 
         self.assertEqual(donasi.status, "Donatur mengajukan pembatalan. Sedang diproses admin")
+
+
+    def testCreateLembagaSosial(self):
+        payload = {
+            "namaLs": "namaLs",
+            "deskripsi": "deskripsi",
+            "urlFoto": "urlFoto",
+            "namaPimpinan": "namaPimpinan",
+            "jenis": "jenis",
+            "kapasitas": "kapasitas",
+            "kebutuhan": "kebutuhan",
+            "nomorTeleponLs": "nomorTeleponLs",
+            "nomorTeleponLs": "nomorTeleponLs",
+            "alamat": "alamat",
+        };
+
+        self.assertEqual(LembagaSosialModel.objects.all().count(),1)
+
+        response = Client().post('/donasi/create-lembaga-sosial/',payload)
+        self.assertEqual(response.status_code,200)
+
+        self.assertEqual(LembagaSosialModel.objects.all().count(),2)
