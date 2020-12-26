@@ -64,8 +64,19 @@ def formulirdonasi(request):
     return render(request, 'lembaga-sosial/ls-formulirdonasi.html', {'data': data})
     
 
-def pembatalandonasi(request):
-    return render(request, 'admin/admin-daftarPembatalanDonasi.html', {})
+@csrf_exempt
+def adminDaftarPembatalandonasi(request):
+    donasi = DonasiManager.getInstance()
+    if request.method == "POST":
+        idDonasi = request.POST['idDonasi']
+        status = request.POST['status']
+
+        donasi.cancelDonasi(idDonasi, status, "")
+
+    status = "Donatur mengajukan pembatalan. Sedang diproses admin"
+    data = donasi.getDonasibyStatus(status)
+    return render(request, 'admin/admin-daftarPembatalanDonasi.html', {'data': data})
+    
 
 def createLembagaSosial(request):
     form = LembagaSosialForm(request.POST or None)

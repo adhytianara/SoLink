@@ -26,6 +26,9 @@ class DonasiManager:
     def getAllDonasi(self):
         return DonasiModel.objects.all()
 
+    def getDonasibyStatus(self, status):
+        return DonasiModel.objects.all().filter(status=status)
+
     def cancelDonasi(self, idDonasi, status, alasanPembatalan):
         DonasiModel.objects.filter(id=idDonasi).update(status=status, alasanPembatalan=alasanPembatalan)
         

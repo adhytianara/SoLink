@@ -7,6 +7,6 @@ urlpatterns = [
     path('', donasipage, name='donasipage'),
     path('riwayat-donasi/', riwayatdonasi, name='riwayatdonasi'),
     path('lembaga-sosial/formulir-donasi/', formulirdonasi, name='formulirdonasi'),
-    path('admin/pembatalan-donasi/', pembatalandonasi, name='pembatalandonasi'),
+    path('admin/pembatalan-donasi/', adminDaftarPembatalandonasi, name='pembatalandonasi'),
     path('create-lembaga-sosial/', createLembagaSosial, name='createLembagaSosial'),
 ]
