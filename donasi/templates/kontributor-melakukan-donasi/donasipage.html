@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donasi - SoLink</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+</head>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+    img {
+        object-fit: contain;
+        max-height: 250px;
+    }
+
+    h5 {
+        font-weight: 600;
+    }
+
+    div p {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+</head>
+
+<body style="background-color: #bbd4ce; font-family: 'Nunito', sans-serif;">
+    {% include 'navbar.html' %}
+    <div class="container" style="margin-top: 2%;">
+        <div class="row">
+            <div class="col-10">
+                <h1 style="font-family: 'Caveat', cursive;">Donasi</h1>
+            </div>
+            <div class="col-2">
+                <a href="{% url 'donasi:riwayatdonasi' %}">
+                    <button type="button" class="btn btn-outline-dark" style="float: right;">
+                        Riwayat Donasi
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="row row-cols-2 row-cols-sm-2" style="margin-top: 1%;">
+            {% for d in data %}
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <img src={{d.urlFoto}} class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{d.namaLs}}</h5>
+                        <div class="">
+                            <p class="card-text">Lokasi : {{d.alamat}}</p>
+                            <p class="card-text">Kebutuhan : {{d.kebutuhan}}</p>
+                            <p class="card-text">Jumlah anak : {{d.kapasitas}}</p>
+                        </div>
+                        <div class="mt-3">
+                            <button
+                                onclick="setSelectedLembagaSosial('{{ d.id }}', '{{ d.namaLs }}', '{{ d.deskripsi }}', '{{ d.urlFoto }}', '{{ d.namaPimpinan }}', '{{ d.jenis }}', '{{ d.kapasitas }}', '{{ d.kebutuhan }}', '{{ d.nomorTeleponLs }}', '{{ d.alamat }}')"
+                                type="button" class="btn btn-secondary" data-toggle="modal" data-target="#detailModal">
+                                <p class="card-text">Detail</p>
+                            </button>
+                            <button onclick="setLsDataforFormulir('{{ d.id }}', '{{ d.namaLs }}', '{{ d.urlFoto }}')" type="button" class="btn btn-primary"
+                                data-toggle="modal" data-target="#formulirDonasiModal">
+                                <p class="card-text">Donasi</p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    </div>
+
+    {% include 'kontributor-melakukan-donasi/detailModal.html' %}
+    {% include 'kontributor-melakukan-donasi/formulirDonasiModal.html' %}
+    {% include 'kontributor-melakukan-donasi/formulirBerhasilModal.html' %}
+</body>
+
+<script>
+var idLs;
+var namaLs;
+var urlFoto;
+$("#metodePengiriman").mouseup(function() {
+    var metode = document.getElementById("metodePengiriman").value;
+    var divTanggalPengiriman = document.getElementById("divTanggalPengiriman");
+    var divAlamatJemput = document.getElementById("divAlamatJemput");
+    switch (metode) {
+        case "as":
+            divTanggalPengiriman.style.display = "block";
+            divAlamatJemput.style.display = "none";
+            break;
+        case "js":
+            divAlamatJemput.style.display = "block";
+            divTanggalPengiriman.style.display = "none";
+            break;
+    }
+})
+
+const setSelectedLembagaSosial = (id,namaLs,deskripsi,urlFoto,namaPimpinan,jenis,kapasitas,kebutuhan,nomorTeleponLs,alamat) => {
+    this.idLs=id;
+    this.namaLs=namaLs;
+    this.urlFoto=urlFoto;
+    document.getElementById("namaLs").innerText=namaLs;
+    document.getElementById("deskripsi").innerText=deskripsi;
+    document.getElementById("urlFoto").src=urlFoto;
+    document.getElementById("namaPimpinan").innerText=namaPimpinan;
+    document.getElementById("jenis").innerText=jenis;
+    document.getElementById("kapasitas").innerText=kapasitas;
+    document.getElementById("kebutuhan").innerText=kebutuhan;
+    document.getElementById("nomorTeleponLs").innerText=nomorTeleponLs;
+    document.getElementById("alamat").innerText=alamat;
+}
+
+const setLsDataforFormulir = (id,namaLs,urlFoto) => {
+    this.idLs=id;
+    this.namaLs=namaLs;
+    this.urlFoto=urlFoto;
+    displayLsDataforFormulir();
+}
+
+const displayLsDataforFormulir = () => {
+    document.getElementById("namaLsForm").innerHTML = this.namaLs;
+    document.getElementById("urlLsForm").src = this.urlFoto;
+}
+
+const checkData = () => {
+    console.log("checkData");
+
+    namaDonatur = document.getElementById("namaDonatur").value;
+    jenisBarang = document.getElementById("jenisBarang").value;
+    metodePengiriman = document.getElementById("metodePengiriman").value;
+    tanggalPengiriman = document.getElementById("tanggalPengiriman").value;
+    alamatJemput = document.getElementById("alamatJemput").value;
+    warning = document.getElementById("warningEmptyData");
+    warningText = document.getElementById("warningText");
+
+
+    if (namaDonatur == "") {
+        warningText.innerText = "Nama tidak boleh kosong";
+        warning.style.display = "block";
+    } else if (jenisBarang == "") {
+        warningText.innerText = "Jenis barang tidak boleh kosong";
+        warning.style.display = "block";
+    } else if (metodePengiriman == "as" && tanggalPengiriman == "") {
+        warningText.innerText = "Tentukan tanggal pengiriman";
+        warning.style.display = "block";
+    } else if (metodePengiriman == "js" && alamatJemput == ""){
+        warningText.innerText = "Alamat Penjemputan tidak boleh kosong";
+        warning.style.display = "block";
+    } else {
+        $('#formulirBerhasilModal').modal('show')
+        $('#formulirDonasiModal').modal('hide')
+    }
+}
+
+const saveFormulir = () => {
+    namaDonatur = document.getElementById("namaDonatur").value;
+    jenisBarang = document.getElementById("jenisBarang").value;
+    metodePengiriman = document.getElementById("metodePengiriman").value == "as" ? "Antar Sendiri" : "Jasa Antar";
+    tanggalPengiriman = document.getElementById("tanggalPengiriman").value;
+    alamatJemput = document.getElementById("alamatJemput").value;
+    warning = document.getElementById("warningEmptyData");
+
+    var data = {
+        idLs: this.idLs,
+        namaDonatur: namaDonatur,
+        jenisBarang: jenisBarang,
+        metodePengiriman: metodePengiriman,
+        tanggalPengiriman: tanggalPengiriman,
+        alamatJemput: alamatJemput,
+    };
+    $.ajax({
+        type: "POST",
+        url : '/donasi/',
+        data: data
+    })
+    location.reload()
+}
+</script>
+</html>

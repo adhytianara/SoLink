@@ -14,3 +14,9 @@ class LembagaSosialManager:
             raise Exception("This class is a singleton!")
         else:
             LembagaSosialManager.__instance = self
+
+    def getById(self, idLs):
+        return LembagaSosialModel.objects.get(id=idLs)
+
+    def getAllLembagaSosial(self):
+        return LembagaSosialModel.objects.all()
