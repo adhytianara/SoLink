@@ -1,4 +1,4 @@
-from donasi.LembagaSosialModel import LembagaSosialModel
+from donasi.models import LembagaSosialModel
 
 class LembagaSosialManager:
     __instance = None

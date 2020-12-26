@@ -1,9 +1,8 @@
 from django.test import TestCase, Client
-from donasi.LembagaSosialModel import LembagaSosialModel
-from donasi.DonasiModel import DonasiModel
-from donasi.DonasiManager import DonasiManager
-from donasi.LembagaSosialManager import LembagaSosialManager
-
+from donasi.models import LembagaSosialModel
+from donasi.managerLembagaSosial import LembagaSosialManager
+from donasi.models import DonasiModel
+from donasi.managerDonasi import DonasiManager
 class DonasiKontributorTest(TestCase):
 
     def setUp(self):

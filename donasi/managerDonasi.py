@@ -1,4 +1,4 @@
-from donasi.DonasiModel import DonasiModel
+from donasi.models import DonasiModel
 
 class DonasiManager:
     __instance = None
