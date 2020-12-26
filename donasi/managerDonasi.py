@@ -28,3 +28,6 @@ class DonasiManager:
 
     def cancelDonasi(self, idDonasi, status, alasanPembatalan):
         DonasiModel.objects.filter(id=idDonasi).update(status=status, alasanPembatalan=alasanPembatalan)
+        
+    def updateStatusDonasi(self, idDonasi, status):
+        DonasiModel.objects.filter(id=idDonasi).update(status=status)

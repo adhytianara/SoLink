@@ -20,3 +20,4 @@ class LembagaSosialManager:
 
     def getAllLembagaSosial(self):
         return LembagaSosialModel.objects.all()
+        
