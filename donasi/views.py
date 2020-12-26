@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from donasi.managerLembagaSosial import LembagaSosialManager
 from donasi.managerDonasi import DonasiManager
@@ -88,3 +88,9 @@ def createLembagaSosial(request):
         'form': form
     }
     return render(request, 'lembaga-sosial/createLembagaSosial.html', context)
+
+
+def deleteAllDonasi(request):
+    donasiManager = DonasiManager.getInstance()
+    donasiManager.deleteAllDonasi()
+    return redirect('/donasi/')

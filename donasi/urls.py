@@ -9,4 +9,5 @@ urlpatterns = [
     path('lembaga-sosial/formulir-donasi/', formulirdonasi, name='formulirdonasi'),
     path('admin/pembatalan-donasi/', adminDaftarPembatalandonasi, name='pembatalandonasi'),
     path('create-lembaga-sosial/', createLembagaSosial, name='createLembagaSosial'),
+    path('delete-all/', deleteAllDonasi, name='deleteAllDonasi'),
 ]
