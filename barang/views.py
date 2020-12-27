@@ -39,8 +39,10 @@ def tambahBarang(request):
                 mitra = Mitra(namaPemilik)
                 mitra.menambahkanBarang(barang)
                 return redirect('/barang/')
-    form = TambahBarangForm()
-    return render(request,'tambahBarang.html', {'form': form})
+            else:
+                form = TambahBarangForm()
+                return render(request,'tambahBarang.html', {'form': form})
+    return HttpResponseRedirect(reverse_lazy('article:articleList'))
 
 def updateBarang(request):
     if request.user.is_authenticated:
@@ -52,9 +54,9 @@ def updateBarang(request):
     return HttpResponseRedirect(reverse_lazy('article:articleList'))
 
 def konfirmasiUpdate(request,id):
-    if request.method == "POST":
-        if request.user.is_authenticated:
-            if request.user.profile.role == "Mitra":
+    if request.user.is_authenticated:
+        if request.user.profile.role == "Mitra":
+            if request.method == "POST":
                 namaBarang = request.POST['namaBarang']
                 deskripsiBarang = request.POST['deskripsiBarang']
                 urlFoto = request.POST['urlFoto']
@@ -67,18 +69,20 @@ def konfirmasiUpdate(request,id):
                 barang.updateHarga(hargaBarang)
                 barang.updateJumlahStok(jumlahStok)
                 return redirect('/barang/')
-    dataBarang = Barang.objects.all().filter(idBarang=id)
-    form = UpdateBarangForm()
-    for data in dataBarang:
-        form.fields['idBarang'].initial = data.idBarang
-        form.fields['ratedStok'].initial = data.stokRate
-        form.fields['rating'].initial = data.rating
-        form.fields['namaBarang'].initial = data.namaBarang
-        form.fields['urlFoto'].initial = data.urlFoto
-        form.fields['hargaBarang'].initial = data.hargaBarang
-        form.fields['jumlahStok'].initial = data.jumlahStok
-        form.fields['deskripsiBarang'].initial = data.deskripsiBarang
-    return render(request, 'konfirmasiUpdate.html', {'form': form})
+            else:
+                dataBarang = Barang.objects.all().filter(idBarang=id)
+                form = UpdateBarangForm()
+                for data in dataBarang:
+                    form.fields['idBarang'].initial = data.idBarang
+                    form.fields['ratedStok'].initial = data.stokRate
+                    form.fields['rating'].initial = data.rating
+                    form.fields['namaBarang'].initial = data.namaBarang
+                    form.fields['urlFoto'].initial = data.urlFoto
+                    form.fields['hargaBarang'].initial = data.hargaBarang
+                    form.fields['jumlahStok'].initial = data.jumlahStok
+                    form.fields['deskripsiBarang'].initial = data.deskripsiBarang
+                return render(request, 'konfirmasiUpdate.html', {'form': form})
+    return HttpResponseRedirect(reverse_lazy('article:articleList'))
 
 def hapusBarang(request):
     if request.user.is_authenticated:
@@ -90,17 +94,21 @@ def hapusBarang(request):
     return HttpResponseRedirect(reverse_lazy('article:articleList'))
 
 def konfirmasiHapus(request,id):
-    if request.method == "POST":
-        if request.user.is_authenticated:
-            if request.user.profile.role == "Mitra":
+    if request.user.is_authenticated:
+        if request.user.profile.role == "Mitra":
+            if request.method == "POST":
                 namaPemilik = request.user.username
                 mitra = Mitra(namaPemilik)
                 mitra.menghapusBarang(id)
                 return redirect('/barang/')
-    dataBarang = Barang.objects.all().filter(idBarang=id)
-    form = HapusBarangForm()
-    for barang in dataBarang:
-        form.fields['idBarang'].initial = barang.idBarang
-        form.fields['namaBarang'].initial = barang.namaBarang
-        foto = barang.urlFoto
-    return render(request, "konfirmasiHapus.html",{'form':form,'image':foto})
+            else :
+                dataBarang = Barang.objects.all().filter(idBarang=id)
+                form = HapusBarangForm()
+                for barang in dataBarang:
+                    form.fields['idBarang'].initial = barang.idBarang
+                    form.fields['namaBarang'].initial = barang.namaBarang
+                    foto = barang.urlFoto
+                return render(request, "konfirmasiHapus.html",{'form':form,'image':foto})
+    return HttpResponseRedirect(reverse_lazy('article:articleList'))
+
+    
