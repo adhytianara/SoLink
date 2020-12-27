@@ -81,6 +81,26 @@ def konfirmasiUpdate(request,id):
     return render(request, 'konfirmasiUpdate.html', {'form': form})
 
 def hapusBarang(request):
+    if request.user.is_authenticated:
+        if request.user.profile.role == "Mitra":
+            username = request.user.username
+            mitra = Mitra(username)
+            data = mitra.barangMitra()
+            return render(request, 'hapusBarang.html',{'data':data})
+    return HttpResponseRedirect(reverse_lazy('article:articleList'))
+
+def konfirmasiHapus(request,id):
     if request.method == "POST":
-        return redirect('/barang/')
-    return render(request, 'hapusBarang.html', {})
+        if request.user.is_authenticated:
+            if request.user.profile.role == "Mitra":
+                namaPemilik = request.user.username
+                mitra = Mitra(namaPemilik)
+                mitra.menghapusBarang(id)
+                return redirect('/barang/')
+    dataBarang = Barang.objects.all().filter(idBarang=id)
+    form = HapusBarangForm()
+    for barang in dataBarang:
+        form.fields['idBarang'].initial = barang.idBarang
+        form.fields['namaBarang'].initial = barang.namaBarang
+        foto = barang.urlFoto
+    return render(request, "konfirmasiHapus.html",{'form':form,'image':foto})

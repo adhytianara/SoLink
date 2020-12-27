@@ -1,3 +1,4 @@
 from django.contrib import admin
+from barang.models import Barang
 
-# Register your models here.
+admin.site.register(Barang)
