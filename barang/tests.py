@@ -84,3 +84,49 @@ class ViewTest(TestCase):
     def testKelolaBarangView(self):
         response = resolve("/barang/")
         self.assertEqual(response.func,listBarang)
+
+    def testUrlTambahBarangValid(self):
+        self.client.login(username="inisti",password="mitra123")
+        response = self.client.get('/barang/tambah_barang/')
+        self.assertEqual(response.status_code, 200)
+    
+    def testTambahBarangTemplate(self):
+        self.client.login(username="inisti",password="mitra123")
+        response = self.client.get('/barang/tambah_barang/')
+        self.assertTemplateUsed(response, 'tambahBarang.html')   
+    
+    def testTambahBarangPost(self):
+        self.assertEqual(Barang.objects.all().count(),1)
+
+        self.client.login(username="inisti",password="mitra123")
+        data = {
+            "namaBarang":"Buku",
+            "urlFoto":"blabla.co.id",
+            "hargaBarang":50000,
+            "jumlahStok":300,
+            "deskripsiBarang":"Ini adalah baraang baruu"
+        }
+        
+        response = self.client.post("/barang/tambah_barang/",data)
+        self.assertEqual(response.status_code,302)
+        self.assertEqual(Barang.objects.all().count(),2)
+
+    def testTambahBarangPostFirstData(self):
+        self.assertEqual(Barang.objects.all().count(),1)
+
+        self.client.login(username="inisti",password="mitra123")
+        hapusBarang = Barang.objects.get(idBarang=100)
+        hapusBarang.delete()
+        
+        data = {
+            "namaBarang":"Buku",
+            "urlFoto":"blabla.co.id",
+            "hargaBarang":50000,
+            "jumlahStok":300,
+            "deskripsiBarang":
+            "Ini adalah baraang baruu"
+        }
+
+        response = self.client.post("/barang/tambah_barang/",data)
+        self.assertEqual(response.status_code,302)
+        self.assertEqual(Barang.objects.all().count(),1)
