@@ -42,27 +42,43 @@ def tambahBarang(request):
     form = TambahBarangForm()
     return render(request,'tambahBarang.html', {'form': form})
 
-def masukanBarang(request):
-    idBarang = 1
-    namaBarang = request.POST['nama']
-    deskripsiBarang = request.POST['deskripsi']
-    urlFoto = request.POST['url']
-    hargaBarang = request.POST['harga']
-    jumlahStok = request.POST['jumlah']
-    rating = 0
-    stokRate = 0
-    model = BarangModel(idBarang=idBarang,namaBarang=namaBarang,deskripsiBarang=deskripsiBarang,
-    urlFoto=urlFoto,hargaBarang=hargaBarang,jumlahStok=jumlahStok,rating=rating,stokRate=stokRate)
-    model.save()
-
-def konfirmasiUpdate(request):
-    if request.method == "POST":
-        return redirect('/barang/')
-    form = UpdateBarangForm()
-    return render(request, 'konfirmasiUpdate.html', {'form': form})
-
 def updateBarang(request):
-    return render(request, 'updateBarang.html', {})
+    if request.user.is_authenticated:
+        if request.user.profile.role == "Mitra":
+            username = request.user.username
+            mitra = Mitra(username)
+            data = mitra.barangMitra()
+            return render(request, 'updateBarang.html',{'data':data})
+    return HttpResponseRedirect(reverse_lazy('article:articleList'))
+
+def konfirmasiUpdate(request,id):
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            if request.user.profile.role == "Mitra":
+                namaBarang = request.POST['namaBarang']
+                deskripsiBarang = request.POST['deskripsiBarang']
+                urlFoto = request.POST['urlFoto']
+                hargaBarang = request.POST['hargaBarang']
+                jumlahStok = request.POST['jumlahStok']
+                barang = Barang.objects.get(idBarang=id)
+                barang.updateNama(namaBarang)
+                barang.updateDeskripsi(deskripsiBarang)
+                barang.updateFoto(urlFoto)
+                barang.updateHarga(hargaBarang)
+                barang.updateJumlahStok(jumlahStok)
+                return redirect('/barang/')
+    dataBarang = Barang.objects.all().filter(idBarang=id)
+    form = UpdateBarangForm()
+    for data in dataBarang:
+        form.fields['idBarang'].initial = data.idBarang
+        form.fields['ratedStok'].initial = data.stokRate
+        form.fields['rating'].initial = data.rating
+        form.fields['namaBarang'].initial = data.namaBarang
+        form.fields['urlFoto'].initial = data.urlFoto
+        form.fields['hargaBarang'].initial = data.hargaBarang
+        form.fields['jumlahStok'].initial = data.jumlahStok
+        form.fields['deskripsiBarang'].initial = data.deskripsiBarang
+    return render(request, 'konfirmasiUpdate.html', {'form': form})
 
 def hapusBarang(request):
     if request.method == "POST":
