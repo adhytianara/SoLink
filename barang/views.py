@@ -1,12 +1,22 @@
 from django.shortcuts import render,redirect
 from django.core import serializers
-from django.http import HttpResponse,JsonResponse
+from django.http import HttpResponse,JsonResponse, HttpResponseRedirect
 from .forms import *
 from .models import *
+from django.contrib.auth.models import User
+from article.views import articleList
+from loginin.Mitra import Mitra
+from django.urls import reverse_lazy
 
 # Create your views here.
 def listBarang(request):
-    return render(request, 'barang.html', {})
+    if request.user.is_authenticated:
+        if request.user.profile.role == "Mitra":
+            username = request.user.username
+            mitra = Mitra(username)
+            data = mitra.barangMitra()
+            return render(request, 'barang.html',{'data':data})
+    return HttpResponseRedirect(reverse_lazy('article:articleList'))
 
 def tambahBarang(request):
     if request.method == "POST":
