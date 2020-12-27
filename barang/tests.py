@@ -145,6 +145,11 @@ class ViewTest(TestCase):
         response = self.client.get('/barang/update_barang/')
         self.assertEqual(response.status_code, 302)
 
+    def testUpdateBarangExist(self):
+        self.client.login(username="inisti",password="mitra123")
+        response = self.client.get('/barang/update_barang/')
+        self.assertContains(response, 'buku aji')
+
     def testUrlKonfirmasiUpdateBarangValid(self):
         self.client.login(username="inisti",password="mitra123")
         response = self.client.get('/barang/konfirmasi_update/100/')
