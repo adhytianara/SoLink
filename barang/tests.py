@@ -131,6 +131,10 @@ class ViewTest(TestCase):
         self.assertEqual(response.status_code,302)
         self.assertEqual(Barang.objects.all().count(),1)
    
+    def testTambahBarangRedirect(self):
+        response = self.client.get('/barang/tambah_barang/')
+        self.assertEqual(response.status_code,302)
+
     def testUrlUpdateBarangValid(self):
         self.client.login(username="inisti",password="mitra123")
         response = self.client.get('/barang/update_barang/')
@@ -179,6 +183,10 @@ class ViewTest(TestCase):
         self.assertEqual(Barang.objects.get(idBarang=100).hargaBarang,5000)
         self.assertEqual(Barang.objects.get(idBarang=100).jumlahStok,300)
         self.assertEqual(Barang.objects.get(idBarang=100).deskripsiBarang,"Ini adalah baraang baruu")
+    
+    def testKonfirmasiUpdateRedirect(self):
+        response = self.client.get('/barang/konfirmasi_update/100/')
+        self.assertEqual(response.status_code,302)
 
     def testHapusBarangValid(self):
         self.client.login(username="inisti",password="mitra123")
@@ -221,3 +229,7 @@ class ViewTest(TestCase):
         response = self.client.post("/barang/konfirmasi_hapus/100/",data)
         self.assertEqual(response.status_code,302)
         self.assertEqual(Barang.objects.all().count(),0)
+    
+    def testKonfirmasiHapusRedirect(self):
+        response = self.client.get('/barang/konfirmasi_hapus/100/')
+        self.assertEqual(response.status_code,302)
