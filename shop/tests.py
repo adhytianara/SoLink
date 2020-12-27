@@ -31,3 +31,8 @@ class ViewTest(TestCase):
     def testShopView(self):
         response = resolve("/shop/")
         self.assertEqual(response.func,shoppage)
+    
+    def testShopBarang(self):
+        response = self.client.get('/shop/')
+        self.assertContains(response, 'buku aji')
+        self.assertContains(response, '50000')
