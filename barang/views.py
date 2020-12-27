@@ -19,8 +19,26 @@ def listBarang(request):
     return HttpResponseRedirect(reverse_lazy('article:articleList'))
 
 def tambahBarang(request):
-    if request.method == "POST":
-        return redirect('/barang/')
+    if request.user.is_authenticated:
+        if request.user.profile.role == "Mitra":
+            if request.method == "POST":
+                namaPemilik = request.user.username
+                if Barang.objects.all().count() == 0:
+                    idBarang = 1
+                else :
+                    idBarang = Barang.objects.order_by('-idBarang')[0].idBarang + 1
+                namaBarang = request.POST['namaBarang']
+                deskripsiBarang = request.POST['deskripsiBarang']
+                urlFoto = request.POST['urlFoto']
+                hargaBarang = request.POST['hargaBarang']
+                jumlahStok = request.POST['jumlahStok']
+                rating = 0
+                stokRate = 0
+                barang = Barang(namaPemilik=namaPemilik,idBarang=idBarang,namaBarang=namaBarang,deskripsiBarang=deskripsiBarang,
+                urlFoto=urlFoto,hargaBarang=hargaBarang,jumlahStok=jumlahStok,rating=rating,stokRate=stokRate)
+                mitra = Mitra(namaPemilik)
+                mitra.menambahkanBarang(barang)
+                return redirect('/barang/')
     form = TambahBarangForm()
     return render(request,'tambahBarang.html', {'form': form})
 
