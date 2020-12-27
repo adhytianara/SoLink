@@ -130,3 +130,47 @@ class ViewTest(TestCase):
         response = self.client.post("/barang/tambah_barang/",data)
         self.assertEqual(response.status_code,302)
         self.assertEqual(Barang.objects.all().count(),1)
+   
+    def testUrlUpdateBarangValid(self):
+        self.client.login(username="inisti",password="mitra123")
+        response = self.client.get('/barang/update_barang/')
+        self.assertEqual(response.status_code, 200)
+
+    def testUpdateBarangTemplate(self):
+        self.client.login(username="inisti",password="mitra123")
+        response = self.client.get('/barang/update_barang/')
+        self.assertTemplateUsed(response, 'updateBarang.html')  
+
+    def testUpdateBarangRedirect(self):
+        response = self.client.get('/barang/update_barang/')
+        self.assertEqual(response.status_code, 302)
+
+    def testUrlKonfirmasiUpdateBarangValid(self):
+        self.client.login(username="inisti",password="mitra123")
+        response = self.client.get('/barang/konfirmasi_update/100/')
+        self.assertEqual(response.status_code, 200)
+
+    def testKonfirmasiUpdateBarangTemplate(self):
+        self.client.login(username="inisti",password="mitra123")
+        response = self.client.get('/barang/konfirmasi_update/100/')
+        self.assertTemplateUsed(response, 'konfirmasiUpdate.html')
+
+    def testKonfirmasiUpdateBarangPost(self):
+        self.assertEqual(Barang.objects.get(idBarang=100).namaBarang,"buku aji")
+
+        self.client.login(username="inisti",password="mitra123")
+        data = {
+            "namaBarang":"Buku",
+            "urlFoto":"blabla.co.id",
+            "hargaBarang":5000,
+            "jumlahStok":300,
+            "deskripsiBarang":"Ini adalah baraang baruu"
+        }
+
+        response = self.client.post("/barang/konfirmasi_update/100/",data)
+        self.assertEqual(response.status_code,302)
+        self.assertEqual(Barang.objects.get(idBarang=100).namaBarang,"Buku")
+        self.assertEqual(Barang.objects.get(idBarang=100).urlFoto,"blabla.co.id")
+        self.assertEqual(Barang.objects.get(idBarang=100).hargaBarang,5000)
+        self.assertEqual(Barang.objects.get(idBarang=100).jumlahStok,300)
+        self.assertEqual(Barang.objects.get(idBarang=100).deskripsiBarang,"Ini adalah baraang baruu")
