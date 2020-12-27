@@ -193,7 +193,12 @@ class ViewTest(TestCase):
     def testHapusBarangRedirect(self):
         response = self.client.get('/barang/hapus_barang/')
         self.assertEqual(response.status_code, 302)
-    
+
+    def testHapusBarangExist(self):
+        self.client.login(username="inisti",password="mitra123")
+        response = self.client.get('/barang/hapus_barang/')
+        self.assertContains(response, 'buku aji')
+
     def testKonfirmasiHapusBarangValid(self):
         self.client.login(username="inisti",password="mitra123")
         response = self.client.get('/barang/konfirmasi_hapus/100/')
