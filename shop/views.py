@@ -14,5 +14,6 @@ def checkout(request):
 def riwayat(request):
     return render(request, 'riwayat.html', {})
 
-def deskripsi(request):
-    return render(request, 'deskripsiBarang.html', {})
+def deskripsi(request,id):
+    data = Barang.objects.get(idBarang=id)
+    return render(request, 'deskripsiBarang.html',{'data':data})
