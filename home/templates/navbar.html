@@ -23,43 +23,40 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            role : Admin
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{% url 'article:editArticle' %}">Kelola Artikel</a>
-            <a class="dropdown-item" href="{% url 'donasi:pembatalandonasi' %}">Pembatalan Donasi</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            role : Mitra
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{% url 'barang:listBarang' %}">Kelola Barang</a>
-            <a class="dropdown-item" href="{% url 'mtr_shop:penjualan' %}">Transaksi Penjualan</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            role : Lembaga Sosial
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{% url 'donasi:formulirdonasi' %}">Formulir Donasi</a>
-          </div>
+        {% if user.profile.role == "Admin" %}
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'article:editArticle' %}">Kelola Artikel <span></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="{% url 'article:articleList' %}">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link active" href="{% url 'donasi:pembatalandonasi' %}">Validasi Pembatalan Donasi <span></span></a>
         </li>
+        {% endif %}
+        {% if user.profile.role == "Mitra" %}
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'barang:listBarang' %}">Kelola Barang <span></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'mtr_shop:penjualan' %}">Transaksi Penjualan <span></span></a>
+        </li>
+        {% endif %}
+        {% if user.profile.role == "Lembaga Sosial" %}
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'donasi:formulirdonasi' %}">Daftar Formulir Donasi <span></span></a>
+        </li>
+        {% endif %}
+        {% if user.profile.role == "Kontributor/Pembeli" %}
         <li class="nav-item">
           <a class="nav-link active" href="{% url 'shop:shoppage' %}">Zero Waste Shop</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="{% url 'donasi:donasipage' %}">Donasi</span></a>
         </li>
+        {% endif %}
         <li class="nav-item">
-          <a class="nav-link active" href="{% url 'loginin:loginin' %}">Log In</span></a>
+          <a class="nav-link active" href="{% url 'article:articleList' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'loginin:loginin' %}">Account</span></a>
         </li>
       </ul>
     </div>

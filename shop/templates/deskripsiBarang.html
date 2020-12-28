@@ -26,7 +26,7 @@
         <div class="row row-cols-2 row-cols-sm-4 h-100" style="margin-top: 2%;">
             <div class="col-sm-4 justify-content-center align-self-center h-100">
                 <div class="card">
-                    <img src="https://zerowaste.id/wp-content/uploads/2020/06/IMG_0520-1.jpg" class="card-img-top">
+                    <img src="{{ data.urlFoto }}" class="card-img-top">
                     <div class="card-body">
                         <div class="text-right">    
                             <a href="">
@@ -44,27 +44,27 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-4"><h4>Nama Barang</h4> </div>
-                            <div class="col-sm-8"><h4>: Collapsible Sillicone Cup </h4></div>
+                            <div class="col-sm-8"><h4>: {{ data.namaBarang }} </h4></div>
                         </div>
                         <div class="row">
                             <div class="col-4"><h4>Harga</h4> </div>
-                            <div class="col-8"><h4>: Rp. 225.000 </h4></div>
+                            <div class="col-8"><h4>: Rp. {{ data.hargaBarang }} </h4></div>
                         </div>
                         <div class="row">
                             <div class="col-4"><h4>Rating </h4></div>
-                            <div class="col-8"><h4>: 4.5 </h4></div>
+                            <div class="col-8"><h4>: {{ data.rating }} </h4></div>
                         </div>
                         <div class="row">
                             <div class="col-4"><h4>Penjual</h4> </div>
-                            <div class="col-8"><h4>: Aji Inisti </h4></div>
+                            <div class="col-8"><h4>: {{ data.namaPemilik }} </h4></div>
                         </div>
                         <div class="row">
                             <div class="col-4"><h4>Stok</h4> </div>
-                            <div class="col-8"><h4>: 20</h4> </div>
+                            <div class="col-8"><h4>: {{ data.jumlahStok }}</h4> </div>
                         </div>
                         <div class="row">
                             <div class="col-4"><h4>Deskripsi</h4> </div>
-                            <div class="col-8"><h4>Tempat minum dari plastik yang dapat digunakan untuk minuman hangat maupun dingin. Ukuran 450 ml</h4> </div>
+                            <div class="col-8"><h4>{{ data.deskripsiBarang }}</h4> </div>
                         </div>
                     </div>
                 </div>

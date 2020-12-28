@@ -7,5 +7,5 @@ urlpatterns = [
     path('', shoppage, name='shoppage'),
     path('pembayaran/', checkout, name='checkout'),
     path('riwayat_transaksi/', riwayat, name='riwayat'),
-    path('deskripsi/', deskripsi, name='deskripsi'),
+    path('deskripsi/<id>/', deskripsi, name='deskripsi'),
 ]
