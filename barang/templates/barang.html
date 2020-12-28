@@ -54,8 +54,10 @@
         <img src="{{ item.urlFoto }}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">{{ item.namaBarang }}</h5>
-          <div class="text-right">
-              <p class="card-text">{{ item.hargaBarang }}</p>
+          <div class="text-left">
+              <p class="card-text">Harga Barang : {{ item.hargaBarang }}</p>
+              <p class="card-text">Stok Barang : {{ item.jumlahStok }}</p>
+              <p class="card-text">Deskripsi Barang :{{ item.deskripsiBarang }}</p>
           </div>
         </div>
       </div>
