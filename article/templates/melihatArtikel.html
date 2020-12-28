@@ -84,4 +84,9 @@
     </div>
     {% endfor %}
 </body>
+{% if message != "" %}
+<script>
+    alert('{{ message }}');
+</script>
+{% endif %}
 </html>

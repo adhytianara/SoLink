@@ -10,11 +10,19 @@ class Admin:
     def membuatArtikel(self,artikelBaru):
         artikelBaru.save()
 
-    def menghapusArtikel(self,id):
-        a = Artikel.objects.get(idArtikel=id)
+    def menghapusArtikel(self,_id):
+        a = Artikel.objects.get(idArtikel=_id)
+        a.gambarThumbnail.delete(save=True)
         a.delete()
 
-    def getArtikel(self,id):
-        return Artikel.objects.get(idArtikel=id)
+    def mengubahArtikel(self, _id, judul, abstraksi, isi):
+        a = Artikel.objects.get(idArtikel=_id)
+        a.setJudul(judul)
+        a.setAbstraksi(abstraksi)
+        a.setIsi(isi)
+
+
+    def getArtikel(self,_id):
+        return Artikel.objects.get(idArtikel=_id)
 
 
