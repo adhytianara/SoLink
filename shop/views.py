@@ -7,13 +7,19 @@ from .models import KontributorModel, TransaksiModel, KeranjangModel
 from .Kontributor import Kontributor
 from django.http.response import JsonResponse
 from loginin.Mitra import Mitra
-from django.db.utils import OperationalError
+from django.db.utils import IntegrityError, OperationalError
 
 # Create your views here.
 try:
     penggunaModel = User.objects.create(username='kontributor', password="hahihuheho")
     keranjang = KeranjangModel.objects.create()
     kontributorModel = KontributorModel.objects.create(pengguna=penggunaModel, urlFotoDiriDenganKtp="urlFotoDiriDenganKtp", urlFotoKTP="urlFotoKTP", keranjang=keranjang)
+    kontributor = Kontributor(kontributorModel, "namaKontributor", penggunaModel.email, penggunaModel.username, penggunaModel.password, "08123456789", "Kampus Baru UI, Margonda Raya, Depok 12345")
+    mitra = Mitra("namaMitra")
+    mitra.setListTransaksi(kontributor.getAllTransaksi())
+except IntegrityError:
+    penggunaModel = User.objects.get(username='kontributor')
+    kontributorModel = KontributorModel.objects.get(pengguna=penggunaModel)
     kontributor = Kontributor(kontributorModel, "namaKontributor", penggunaModel.email, penggunaModel.username, penggunaModel.password, "08123456789", "Kampus Baru UI, Margonda Raya, Depok 12345")
     mitra = Mitra("namaMitra")
     mitra.setListTransaksi(kontributor.getAllTransaksi())
