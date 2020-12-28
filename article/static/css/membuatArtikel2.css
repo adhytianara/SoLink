@@ -10,20 +10,12 @@
 
 }
 
-.isi textarea{
-    height: 350px;
-}
-
-.abstraksi textarea{
-    height: 180px;
-}
-
 ::-webkit-input-placeholder {
 /* Chrome/Opera/Safari */
 font-style: italic;
 }
 
-a.btn-primary{
+input.btn-primary{
     background: #679186;;
     text-align: center;
     padding: 10px 20px 10px;
@@ -35,11 +27,11 @@ a.btn-primary{
     right:15px;
 }
 
-a.btn-primary:hover{
+input.btn-primary:hover{
     background: #4f7067;;
 }
 
-button.btn-light{
+a.btn-light{
     text-align: center;
     padding: 10px 20px 10px;
     border-radius: 5px;

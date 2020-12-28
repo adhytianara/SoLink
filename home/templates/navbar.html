@@ -17,7 +17,7 @@
 {% block style %}{% endblock %}
 
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #679186;">
-    <a class="navbar-brand" href="{% url 'article:articleList' %}" style="font-family: 'Caveat', cursive; font-weight: 700;">SoLink</a>
+    <a class="navbar-brand" href="{% url 'article:halamanArtikel' %}" style="font-family: 'Caveat', cursive; font-weight: 700;">SoLink</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -28,7 +28,7 @@
             role : Admin
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{% url 'article:editArticle' %}">Kelola Artikel</a>
+            <a class="dropdown-item" href="{% url 'article:mengelolaArtikel' %}">Kelola Artikel</a>
             <a class="dropdown-item" href="{% url 'donasi:pembatalandonasi' %}">Pembatalan Donasi</a>
           </div>
         </li>
@@ -50,7 +50,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="{% url 'article:articleList' %}">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link active" href="{% url 'article:halamanArtikel' %}">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="{% url 'shop:shoppage' %}">Zero Waste Shop</span></a>
