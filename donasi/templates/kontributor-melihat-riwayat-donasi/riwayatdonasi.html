@@ -38,7 +38,7 @@
                             data-target="#riwayatDonasiModal">
                             Lihat rincian
                         </button>
-                        <h5 class="card-title">{{d.lembagaSosial.namaLs}}</h5>
+                        <h5 class="card-title">#{{d.id}} {{d.lembagaSosial.namaLs}}</h5>
                         <p><b>Tanggal donasi : </b>{{d.tanggalDonasi}}</p>
                         {% if d.metodePengiriman == "Antar Sendiri" %}
                         <p><b>Tanggal Pengiriman : </b>{{d.tanggalPengiriman}}</p>
