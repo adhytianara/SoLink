@@ -21,101 +21,50 @@
             </div>
         </div>
         <div class="row row-cols-1 ">
+            {% for trx in listTrx %}
             <div class="col mb-4">
               <div class="card">
                 <div class="card-body">
-                    <button type="button" class="btn btn-outline-dark" style="float: right;" data-toggle="modal" data-target="#mtr_riwayatModal">
+                    <button type="button" class="btn btn-outline-dark" style="float: right;" onclick="detailRiwayatMitra('{{trx.0}}')" data-toggle="modal" data-target="#mtr_riwayatModal">
                         Lihat rincian
                     </button> 
-                    <h5 class="card-title">Transaksi #x</h5>
+                    <h5 class="card-title">Transaksi #{{trx.0}}</h5>
                     <p class="card-text">
                         <table>
                             <tr>
                                 <td><b>Pembeli</b></td>
-                                <td>:  nama_pembeli</td>
+                                <td>:  {{trx.1}}</td>
                             </tr>
                             <tr>
                                 <td><b>Total item</b></td>
-                                <td>:  x</td>
+                                <td>:  {{trx.2}}</td>
                             </tr>
                             <tr>
                                 <td><b>Total pembayaran</b></td>
-                                <td>:  Rp xx.xxx</td>
+                                <td>:  Rp {{trx.3}}</td>
                             </tr>
                             <tr>
                                 <td><b>Status</b></td>
-                                <td>:  Selesai</td>
+                                <td>:  {{trx.4}}</td>
                             </tr>
                         </table>
+                        {% if trx.4 == 'Selesai' %}
                         <br>
-                        Pembayaran sebesar Rp xx.xxx telah berhasil dikirimkan.
+                        Pembayaran sebesar Rp {{trx.3}} telah berhasil dikirimkan.
+                        {% endif %}
                     </p>
+                    {% if trx.4 == 'Menunggu Konfirmasi' %}
+                    <a href="{% url 'mtr_shop:konfirmasiTransaksi' trx.0 %}">Konfirmasi Transaksi</a>
+                    <a href="{% url 'mtr_shop:batalkanTransaksi' trx.0 %}" style="color: red;">Batalkan Transaksi</a>
+                    {% endif %}
+                    {% if trx.4 == 'Sedang Dikemas' %}
+                    <a href="{% url 'mtr_shop:pengiriman' trx.0 %}" style="float: right;">Input resi pengiriman</a>
+                    {% endif %}
                 </div>
               </div>
             </div>
-            <div class="col mb-4">
-              <div class="card">
-                <div class="card-body">
-                    <button type="button" class="btn btn-outline-dark" style="float: right;" data-toggle="modal" data-target="#mtr_riwayatModal">
-                        Lihat rincian
-                    </button> 
-                    <h5 class="card-title">Transaksi #x</h5>
-                    <p class="card-text">
-                        <table>
-                            <tr>
-                                <td><b>Pembeli</b></td>
-                                <td>:  nama_pembeli</td>
-                            </tr>
-                            <tr>
-                                <td><b>Total item</b></td>
-                                <td>:  x</td>
-                            </tr>
-                            <tr>
-                                <td><b>Total pembayaran</b></td>
-                                <td>:  Rp xx.xxx</td>
-                            </tr>
-                            <tr>
-                                <td><b>Status</b></td>
-                                <td>:  Sedang dikemas</td>
-                            </tr>
-                        </table>
-                    </p>
-                </div>
-              </div>
-            </div>
-            <div class="col mb-4">
-              <div class="card">
-                <div class="card-body">
-                    <button type="button" class="btn btn-outline-dark" style="float: right;" data-toggle="modal" data-target="#mtr_riwayatModal">
-                        Lihat rincian
-                    </button> 
-                    <h5 class="card-title">Transaksi #x</h5>
-                    <p class="card-text">
-                        <table>
-                            <tr>
-                                <td><b>Pembeli</b></td>
-                                <td>:  nama_pembeli</td>
-                            </tr>
-                            <tr>
-                                <td><b>Total item</b></td>
-                                <td>:  x</td>
-                            </tr>
-                            <tr>
-                                <td><b>Total pembayaran</b></td>
-                                <td>:  Rp xx.xxx</td>
-                            </tr>
-                            <tr>
-                                <td><b>Status</b></td>
-                                <td>:  Menunggu Konfirmasi</td>
-                            </tr>
-                        </table>
-                    </p>
-                    <a href="">Konfirmasi Transaksi</a>
-                </div>
-              </div>
-            </div>
-          </div>
-    </div>
+            {% endfor %}
+        </div>
 
     {% include 'mitra/mtr_riwayatModal.html' %}
 </body>

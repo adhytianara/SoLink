@@ -23,61 +23,74 @@
             </div>
         </div>
         <div class="row row-cols-1 ">
+            {% for trx in listTransaksi %}
             <div class="col mb-4">
               <div class="card">
                 <div class="card-body">
-                    <button type="button" class="btn btn-outline-dark" style="float: right;" data-toggle="modal" data-target="#riwayatModal">
+                    <button type="button" class="btn btn-outline-dark" style="float: right;" onclick="detailRiwayatModal('{{trx.0}}')" data-toggle="modal" data-target="#riwayatModal">
                         Lihat rincian
                     </button> 
-                    <h5 class="card-title">Transaksi #x</h5>
+                    <h5 class="card-title">Transaksi #{{trx.0}}</h5>
                     <p class="card-text">
-                        <b>Total item:</b> x
+                        <b>Total item:</b> {{trx.1}}
                         <br>
-                        <b>Total pembayaran:</b> Rp xx.xxx
+                        <b>Total pembayaran:</b> Rp {{trx.2}}
                         <br>
-                        <b>Status:</b> Selesai
+                        <b>Metode Pengiriman:</b> {{trx.3}}
+                        <br>
+                        <b>Status:</b> {{trx.4}}
+                        {% if trx.4 == 'Sedang Dikirim' or trx.4 == 'Selesai' %}
+                        <br>
+                        <b>Ekspedisi/No.Resi:</b> {{trx.5}} / {{trx.6}}
+                        {% endif %}
                     </p>
+                    {% if trx.4 == 'Menunggu Pembayaran' %}
+                    <a href="javascript:pembayaran({{ trx.0 }});">Konfirmasi Pembayaran</a>
+                    {% endif %}
+                    {% if trx.4 != 'Menunggu Pembayaran' and trx.4 != 'Selesai' and trx.4 != 'Dibatalkan' %}
+                    <a href="javascript:sampai({{ trx.0 }});" style="float: right;">Konfirmasi Sampai</a>
+                    {% endif %}
                 </div>
               </div>
             </div>
-            <div class="col mb-4">
-              <div class="card">
-                <div class="card-body">
-                    <button type="button" class="btn btn-outline-dark" style="float: right;" data-toggle="modal" data-target="#riwayatModal">
-                        Lihat rincian
-                    </button> 
-                    <h5 class="card-title">Transaksi #x</h5>
-                    <p class="card-text">
-                        <b>Total item:</b> x
-                        <br>
-                        <b>Total pembayaran:</b> Rp xx.xxx
-                        <br>
-                        <b>Status:</b> Sedang Dikirim
-                    </p>
-                </div>
-              </div>
-            </div>
-            <div class="col mb-4">
-              <div class="card">
-                <div class="card-body">
-                    <button type="button" class="btn btn-outline-dark" style="float: right;" data-toggle="modal" data-target="#riwayatModal">
-                        Lihat rincian
-                    </button> 
-                    <h5 class="card-title">Transaksi #x</h5>
-                    <p class="card-text">
-                        <b>Total item:</b> x
-                        <br>
-                        <b>Total pembayaran:</b> Rp xx.xxx
-                        <br>
-                        <b>Status:</b> Menunggu Pembayaran
-                    </p>
-                    <a href="">Konfirmasi Pembayaran</a>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
           </div>
     </div>
 
     {% include 'riwayatModal.html' %}
+    <script>
+        function pembayaran(id) {
+            $.ajax({
+                type : "GET",
+                url : "/shop/pembayaran/",
+                data : {
+                    'id':id
+                },
+                success : function(result) {
+                    alert("Transaksi dengan id " + result['id'] + " telah berhasil dibayar.");
+                    location.reload();
+                },
+                error : function() {
+                    alert("Gagal mendapatkan informasi rincian transaksi. Silakan coba kembali setelah beberapa saat.");
+                }
+            })
+        }
+        function sampai(id) {
+            $.ajax({
+                type : "GET",
+                url : "/shop/sampai/",
+                data : {
+                    'id':id
+                },
+                success : function(result) {
+                    alert("Transaksi dengan id " + result['id'] + " telah berhasil dikonfirmasi sampai.");
+                    location.reload();
+                },
+                error : function() {
+                    alert("Gagal mengonfirmasi transaksi. Silakan coba kembali setelah beberapa saat.");
+                }
+            })
+        }
+    </script>
 </body>
 </html>

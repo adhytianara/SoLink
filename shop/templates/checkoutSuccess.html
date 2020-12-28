@@ -13,7 +13,7 @@
             font-family: 'Caveat', cursive;
             font-weight: 700;
         }
-        li {
+        .liCO {
             margin-bottom: 2%;
         }
     </style>
@@ -30,7 +30,12 @@
                   </div>
             </div>
         </div>
-        <div class="row" style="margin-top: 3%;">
+        <div class="row">
+            <div class="col" style="text-align: center; margin-top: 2%;">
+                <h3>Total Biaya Transaksi: {{biaya}}</h3>
+            </div>
+        </div>
+        <div class="row">
             <div class="col" style="text-align: center;">
                 <h1 class="brand" style="font-weight: 400;">Tata Cara Pembayaran</h1>
             </div>
@@ -38,12 +43,12 @@
         <div class="row justify-content-center" style="margin-top: 1%;">
             <div class="col-12 col-sm-6" style="text-align: left;">
                 <ol>
-                    <li>
+                    <li class="liCO">
                         Setor uang atau uang elektronik (contoh: DANA, OVO, LinkAja, dll.) ke rekening bank SoLink berikut: <b>1234567890</b>.
                         Pastikan nominal yang Anda setorkan sesuai dengan total biaya pada transaksi.
                     </li>
-                    <li>Setelah melakukan pembayaran, harap melakukan konfirmasi pembayaran yang dapat dilakukan di halaman Riwayat Transaksi.</li>
-                    <li>Transaksi Anda akan diteruskan kepada Mitra ketika pembayaran telah dikonfirmasi.</li>
+                    <li class="liCO">Setelah melakukan pembayaran, harap melakukan konfirmasi pembayaran yang dapat dilakukan di halaman Riwayat Transaksi.</li>
+                    <li class="liCO">Transaksi Anda akan diteruskan kepada Mitra ketika pembayaran telah dikonfirmasi.</li>
                 </ol>
                 <br>
                 <a href="{% url 'shop:riwayat' %}"><button type="button" class="btn btn-outline-dark" style="float: right;">Lihat Riwayat Transaksi</button></a>
