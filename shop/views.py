@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from loginin.Pengguna import Pengguna
 from barang.models import Barang
-from .models import KontributorModel, TransaksiModel
+from .models import KontributorModel, TransaksiModel, KeranjangModel
 from .Kontributor import Kontributor
 from django.http.response import JsonResponse
 from loginin.Mitra import Mitra
@@ -12,7 +12,8 @@ from django.db.utils import OperationalError
 # Create your views here.
 try:
     penggunaModel = User.objects.create(username='kontributor', password="hahihuheho")
-    kontributorModel = KontributorModel.objects.get(pengguna=penggunaModel)
+    keranjang = KeranjangModel.objects.create()
+    kontributorModel = KontributorModel.objects.create(pengguna=penggunaModel, urlFotoDiriDenganKtp="urlFotoDiriDenganKtp", urlFotoKTP="urlFotoKTP", keranjang=keranjang)
     kontributor = Kontributor(kontributorModel, "namaKontributor", penggunaModel.email, penggunaModel.username, penggunaModel.password, "08123456789", "Kampus Baru UI, Margonda Raya, Depok 12345")
     mitra = Mitra("namaMitra")
     mitra.setListTransaksi(kontributor.getAllTransaksi())
