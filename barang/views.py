@@ -4,7 +4,7 @@ from django.http import HttpResponse,JsonResponse, HttpResponseRedirect
 from .forms import *
 from .models import *
 from django.contrib.auth.models import User
-from article.views import articleList
+from article.views import halamanArtikel
 from loginin.Mitra import Mitra
 from django.urls import reverse_lazy
 
@@ -16,7 +16,7 @@ def listBarang(request):
             mitra = Mitra(username)
             data = mitra.barangMitra()
             return render(request, 'barang.html',{'data':data})
-    return HttpResponseRedirect(reverse_lazy('article:articleList'))
+    return HttpResponseRedirect(reverse_lazy('article:halamanArtikel'))
 
 def tambahBarang(request):
     if request.user.is_authenticated:
@@ -42,7 +42,7 @@ def tambahBarang(request):
             else:
                 form = TambahBarangForm()
                 return render(request,'tambahBarang.html', {'form': form})
-    return HttpResponseRedirect(reverse_lazy('article:articleList'))
+    return HttpResponseRedirect(reverse_lazy('article:halamanArtikel'))
 
 def updateBarang(request):
     if request.user.is_authenticated:
@@ -51,7 +51,7 @@ def updateBarang(request):
             mitra = Mitra(username)
             data = mitra.barangMitra()
             return render(request, 'updateBarang.html',{'data':data})
-    return HttpResponseRedirect(reverse_lazy('article:articleList'))
+    return HttpResponseRedirect(reverse_lazy('article:halamanArtikel'))
 
 def konfirmasiUpdate(request,id):
     if request.user.is_authenticated:
@@ -82,7 +82,7 @@ def konfirmasiUpdate(request,id):
                     form.fields['jumlahStok'].initial = data.jumlahStok
                     form.fields['deskripsiBarang'].initial = data.deskripsiBarang
                 return render(request, 'konfirmasiUpdate.html', {'form': form})
-    return HttpResponseRedirect(reverse_lazy('article:articleList'))
+    return HttpResponseRedirect(reverse_lazy('article:halamanArtikel'))
 
 def hapusBarang(request):
     if request.user.is_authenticated:
@@ -91,7 +91,7 @@ def hapusBarang(request):
             mitra = Mitra(username)
             data = mitra.barangMitra()
             return render(request, 'hapusBarang.html',{'data':data})
-    return HttpResponseRedirect(reverse_lazy('article:articleList'))
+    return HttpResponseRedirect(reverse_lazy('article:halamanArtikel'))
 
 def konfirmasiHapus(request,id):
     if request.user.is_authenticated:
@@ -109,6 +109,6 @@ def konfirmasiHapus(request,id):
                     form.fields['namaBarang'].initial = barang.namaBarang
                     foto = barang.urlFoto
                 return render(request, "konfirmasiHapus.html",{'form':form,'image':foto})
-    return HttpResponseRedirect(reverse_lazy('article:articleList'))
+    return HttpResponseRedirect(reverse_lazy('article:halamanArtikel'))
 
     

@@ -17,7 +17,7 @@
 {% block style %}{% endblock %}
 
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #679186;">
-    <a class="navbar-brand" href="{% url 'article:articleList' %}" style="font-family: 'Caveat', cursive; font-weight: 700;">SoLink</a>
+    <a class="navbar-brand" href="{% url 'article:halamanArtikel' %}" style="font-family: 'Caveat', cursive; font-weight: 700;">SoLink</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -25,7 +25,7 @@
       <ul class="navbar-nav ml-auto">
         {% if user.profile.role == "Admin" %}
         <li class="nav-item">
-          <a class="nav-link active" href="{% url 'article:editArticle' %}">Kelola Artikel <span></span></a>
+          <a class="nav-link active" href="{% url 'article:mengelolaArtikel' %}">Kelola Artikel <span></span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="{% url 'donasi:pembatalandonasi' %}">Validasi Pembatalan Donasi <span></span></a>
@@ -53,7 +53,7 @@
         </li>
         {% endif %}
         <li class="nav-item">
-          <a class="nav-link active" href="{% url 'article:articleList' %}">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link active" href="{% url 'article:halamanArtikel' %}">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="{% url 'loginin:loginin' %}">Account</span></a>

@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet"></head>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/createArticle2.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/membuatArtikel2.css' %}">
 
 </head>
 
@@ -18,30 +18,19 @@
     {% include 'navbar.html' %}
     <div class="create-artikel col-md-10 offset-md-1">
         <br>
-        <h3>Form Pembuatan Artikel</h3>
-        <div class="contact-form">
-          <div class="input-fields">
-            <label for="judulForm">Judul :</label>
-            <input type="text" class="input" placeholder="Judul" id="judulForm">
-          </div>
-
-          <div class="abstraksi">
-            <label for="abstraksiForm">Abstraksi Singkat :</label>
-            <textarea placeholder="Isi Artikel" id="abstraksiForm"></textarea>
-          </div>
+        <h3 style="text-align: center; padding:28px 0px 20px; font-weight: bolder;">Form Pembuatan Artikel</h3>
+        <form method="POST" action="{% url 'article:membuatArtikel' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.media }}
+          {{ form.as_p }}
           
-          <div class="isi">
-            <label for="isiForm">Isi Artikel</label>
-            <textarea placeholder="Isi Artikel" id="isiForm"></textarea>
-          </div>
-        </div>
-        <div class="form-group">
-            <label for="imageForm">Upload gambar</label>
-            <input type="file" class="form-control-file" id="imageForm">
-        </div>
         <br><br><br>
+        <a class="btn btn-light" href="{% url 'article:mengelolaArtikel' %}" role="button">Batalkan</a>
+        <input type="submit" name="submit" value ="Create" class="btn btn-primary" >
+        </form>
+        <!-- <br><br><br>
         <button type="button" class="btn btn-light">Batalkan</button>
-        <a class="btn btn-primary" href="{% url 'article:articleList' %}" role="button">Simpan</a>
+        <a class="btn btn-primary" href="{% url 'article:halamanArtikel' %}" role="button">Simpan</a> -->
     </div>
 </body>
 

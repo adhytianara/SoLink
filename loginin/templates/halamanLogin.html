@@ -30,14 +30,14 @@
                     <div style="text-align: center;">
                         <p>Selamat datang <strong>{{user.username}} [ {{user.profile.role}} ]</strong></p>
                         <a href="{% url 'logout' %}" class="btn btn-secondary">Log out</a>
-                        <a href="{% url 'article:articleList' %}" class="btn btn-secondary">Kembali</a>
+                        <a href="{% url 'article:halamanArtikel' %}" class="btn btn-secondary">Kembali</a>
                     </div>
                     {% else %}
                     <div style="text-align: center;">
                     <p>Selamat datang</p>
                     <a href="{% url 'login' %}" class="btn btn-primary">Sign in</a>
                     <a href="{% url 'loginin:signup' %}" class="btn btn-primary">Sign up</a>
-                    <a href="{% url 'article:articleList' %}" class="btn btn-secondary">Menu </a>
+                    <a href="{% url 'article:halamanArtikel' %}" class="btn btn-secondary">Menu</a>
                     {% endif%}
                     </div>
                     </div>
