@@ -13,12 +13,14 @@ from django.db.utils import OperationalError
 try:
     penggunaModel = User.objects.get(username='kontributor')
     kontributorModel = KontributorModel.objects.get(pengguna=penggunaModel)
+    kontributor = Kontributor(kontributorModel, "namaKontributor", penggunaModel.email, penggunaModel.username, penggunaModel.password, "08123456789", "Kampus Baru UI, Margonda Raya, Depok 12345")
+    mitra = Mitra("namaMitra")
+    mitra.setListTransaksi(kontributor.getAllTransaksi())
 except OperationalError:
     penggunaModel = None
     kontributorModel = None
-kontributor = Kontributor(kontributorModel, "namaKontributor", penggunaModel.email, penggunaModel.username, penggunaModel.password, "08123456789", "Kampus Baru UI, Margonda Raya, Depok 12345")
-mitra = Mitra("namaMitra")
-mitra.setListTransaksi(kontributor.getAllTransaksi())
+    kontributor = None
+    mitra = None
 
 def shoppage(request):
     data = kontributor.melihatBarang()
