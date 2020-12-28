@@ -14,52 +14,63 @@
               <div class="col-3">Subtotal</div>
               <div class="col-1"></div>
           </div>
-          <div class="row">
-            <div class="col-6">
-                <span>Tumblr</span>
-                <span class="hargaKeranjang">[Rp 200.000]</span>
-            </div>
-            <div class="col-2">
-              <input type="number" id="qty1" name="qty1" min="1" max="10" value="2">
-            </div>
-            <div class="col-3">Rp 400.000</div>
-            <div class="col-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
-                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-              </svg>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-                <span>Cutlery Bamboo Set</span>
-                <span class="hargaKeranjang">[Rp 65.000]</span>
-            </div>
-            <div class="col-2">
-              <input type="number" id="qty2" name="qty2" min="1" max="10" value="1">
-            </div>
-            <div class="col-3">Rp 65.000</div>
-            <div class="col-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
-                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-              </svg>
-            </div>
-          </div>
+          <div id="barangKeranjang"></div>
           <hr>  
           <div class="row">
             <div class="col-6" style="text-align: right; font-weight: 700;">
                 <span>Total</span>
             </div>
-            <div class="col-2">3</div>
-            <div class="col-3">Rp 465.000</div>
+            <div class="col-2" id="qtyTotalKrjg">0</div>
+            <div class="col-3">Rp <span id="totalHargaKrjg">0</span></div>
             <div class="col-1"></div>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Tambah barang</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#pengirimanModal">Checkout</button>
+          <button type="button" class="btn btn-primary" onclick="modalCheckout()" data-dismiss="modal" data-toggle="modal" data-target="#pengirimanModal">Checkout</button>
         </div>
       </div>
     </div>
   </div>
+  
+<script>
+    function modalKeranjang() {
+        $.ajax({
+            type : "GET",
+            url : "/shop/modal_keranjang/",
+            success : function(result) {
+              $("#barangKeranjang").empty();
+              for (let i = 1; i <= result['count']; i++) {
+                var barang = result[i];
+                var barang_entry = '<div class="row"><div class="col-6"><span>' + barang['nama'] + '</span></div><div class="col-2"><span>1</span></div><div class="col-3">Rp ' + barang['harga'] + '</div><div class="col-1"><a href="javascript:hapusBarangKeranjang(\''+barang['nama']+'\','+ barang['id']+');"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></a></div></div>';
+                $("#barangKeranjang").append(barang_entry);
+              }
+
+              $("#qtyTotalKrjg").empty();
+              $("#qtyTotalKrjg").append(result['count']);
+              $("#totalHargaKrjg").empty();
+              $("#totalHargaKrjg").append(result['total']);
+            },
+            error : function() {
+                alert("Gagal mendapatkan informasi keranjang.");
+            }
+        })
+    }
+
+    function hapusBarangKeranjang(namaBarang, idBarang) {
+      $.ajax({
+        type : "POST",
+        url : "/shop/hapus_barang_keranjang/",
+        data : {
+          'idBarang' : idBarang
+        },
+        success : function() {
+          alert(namaBarang + "[" + idBarang + "] berhasil dihapus dari keranjang.");
+          modalKeranjang();
+        },
+        error : function() {
+          alert("Gagal menghapus barang dari keranjang. Silakan coba kembali setelah beberapa saat.");
+        }
+      })
+    }
+</script>

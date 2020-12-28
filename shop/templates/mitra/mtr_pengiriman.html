@@ -25,19 +25,44 @@
                 </a>
             </div>
         </div>
-        <form>
-            <div class="mb-3">
-              <label for="inputEkspedisi" class="form-label">Nama Ekspedisi</label>
-              <input type="text" class="form-control" id="inputEkspedisi">
-            </div>
-            <div class="mb-3">
-              <label for="inputResi" class="form-label">No. Resi</label>
-              <input type="text" class="form-control" id="inputResi">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+        <div class="mb-3">
+            <label for="inputEkspedisi" class="form-label">Nama Ekspedisi</label>
+            <input type="text" class="form-control" id="inputEkspedisi">
+        </div>
+        <div class="mb-3">
+            <label for="inputResi" class="form-label">No. Resi</label>
+            <input type="text" class="form-control" id="inputResi">
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="inputPengiriman('{{id}}')">Submit</button>
     </div>
 
     {% include 'mitra/mtr_riwayatModal.html' %}
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+    <script>
+        function inputPengiriman(idTrx) {
+            var ekspedisi = document.getElementById("inputEkspedisi").value;
+            var resi = document.getElementById("inputResi").value;
+            $.ajax({
+                type : "POST",
+                url : "/mitra/penjualan/input_pengiriman/done/",
+                data : {
+                    'id':idTrx,
+                    'ekspedisi':ekspedisi,
+                    'resi':resi
+                },
+                success : function(result) {
+                    alert("Resi pengiriman berhasil disimpan.");
+                    location.replace("/mitra/penjualan/");
+                },
+                error : function() {
+                    alert("Gagal menyimpan resi pengiriman. Silakan coba kembali setelah beberapa saat.");
+                    location.replace("/mitra/penjualan/");
+                }
+            })
+        }
+    </script>
 </body>
 </html>
