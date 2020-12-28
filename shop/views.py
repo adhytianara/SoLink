@@ -7,10 +7,15 @@ from .models import KontributorModel, TransaksiModel
 from .Kontributor import Kontributor
 from django.http.response import JsonResponse
 from loginin.Mitra import Mitra
+from django.db.utils import OperationalError
 
 # Create your views here.
-penggunaModel = User.objects.get(username='kontributor')
-kontributorModel = KontributorModel.objects.get(pengguna=penggunaModel)
+try:
+    penggunaModel = User.objects.get(username='kontributor')
+    kontributorModel = KontributorModel.objects.get(pengguna=penggunaModel)
+except OperationalError:
+    penggunaModel = None
+    kontributorModel = None
 kontributor = Kontributor(kontributorModel, "namaKontributor", penggunaModel.email, penggunaModel.username, penggunaModel.password, "08123456789", "Kampus Baru UI, Margonda Raya, Depok 12345")
 mitra = Mitra("namaMitra")
 mitra.setListTransaksi(kontributor.getAllTransaksi())
