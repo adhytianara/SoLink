@@ -24,10 +24,10 @@ class DonasiManager:
         donasiModel.save()
 
     def getAllDonasi(self):
-        return DonasiModel.objects.all()
+        return DonasiModel.objects.all().order_by("-id")
 
     def getDonasibyStatus(self, status):
-        return DonasiModel.objects.all().filter(status=status)
+        return DonasiModel.objects.all().filter(status=status).order_by("-id")
 
     def cancelDonasi(self, idDonasi, status, alasanPembatalan):
         DonasiModel.objects.filter(id=idDonasi).update(status=status, alasanPembatalan=alasanPembatalan)

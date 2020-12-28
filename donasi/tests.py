@@ -3,7 +3,11 @@ from donasi.models import LembagaSosialModel
 from donasi.managerLembagaSosial import LembagaSosialManager
 from donasi.models import DonasiModel
 from donasi.managerDonasi import DonasiManager
-class DonasiKontributorTest(TestCase):
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
+
+
+class DonasiTest(TestCase):
 
     def setUp(self):
         super().setUp()
@@ -18,8 +22,32 @@ class DonasiKontributorTest(TestCase):
         namaDonatur="Adhytia",tanggalDonasi="10/12/2020")
         donasiModel.save()
 
+        user = User.objects.create(username="AdhytiaKontri")
+        user.set_password('kontri12345')
+        user.save()
+        user.profile.role = "Kontributor/Pembeli"
+        user.save()
+        user = authenticate(username="AdhytiaKontri",password='kontri12345')
+
+        user = User.objects.create(username="AdhytiaAdmin")
+        user.set_password('admin12345')
+        user.save()
+        user.profile.role = "Admin"
+        user.save()
+        user = authenticate(username="AdhytiaAdmin",password='admin12345')
+
+        user = User.objects.create(username="AdhytiaLs")
+        user.set_password('lss12345')
+        user.save()
+        user.profile.role = "Lembaga Sosial"
+        user.save()
+        user = authenticate(username="AdhytiaLs",password='lss12345')
+
 
     def testMelakukanDonasi(self):
+        response = self.client.get('/donasi/')
+        self.client.login(username="AdhytiaKontri",password="kontri12345")
+
         payload = {
             "idLs": 1,
             "namaDonatur": "Adhytia",
@@ -31,14 +59,16 @@ class DonasiKontributorTest(TestCase):
         
         self.assertEqual(DonasiModel.objects.all().count(),1)
 
-        response = Client().post('/donasi/',payload)
+        response = self.client.post('/donasi/',payload)
         self.assertEqual(response.status_code,200)
         
         self.assertEqual(DonasiModel.objects.all().count(),2)
 
 
     def testMelihatRiwayatDonasi(self):
-        response = Client().get('/donasi/riwayat-donasi/')
+        response = self.client.get('/donasi/riwayat-donasi/')
+        self.client.login(username="AdhytiaKontri",password="kontri12345")
+        response = self.client.get('/donasi/riwayat-donasi/')
         self.assertEqual(response.status_code,200)
 
 
@@ -57,6 +87,9 @@ class DonasiKontributorTest(TestCase):
 
 
     def testBatalkanDonasi(self):
+        response = self.client.get('/donasi/riwayat-donasi/')
+        self.client.login(username="AdhytiaKontri",password="kontri12345")
+
         payload = {
             "idDonasi": 1,
             "alasanPembatalan": "Berubah pikiran",
@@ -67,7 +100,7 @@ class DonasiKontributorTest(TestCase):
 
         self.assertEqual(donasi.status, "Menunggu persetujuan lembaga sosial")
 
-        response = Client().post('/donasi/riwayat-donasi/',payload)
+        response = self.client.post('/donasi/riwayat-donasi/',payload)
         self.assertEqual(response.status_code,200)
 
         for e in DonasiModel.objects.all():
@@ -92,13 +125,16 @@ class DonasiKontributorTest(TestCase):
 
         self.assertEqual(LembagaSosialModel.objects.all().count(),1)
 
-        response = Client().post('/donasi/create-lembaga-sosial/',payload)
+        response = self.client.post('/donasi/create-lembaga-sosial/',payload)
         self.assertEqual(response.status_code,200)
 
         self.assertEqual(LembagaSosialModel.objects.all().count(),2)
 
 
     def testLembagaSosialSetujuiDonasi(self):
+        response = self.client.get('/donasi/lembaga-sosial/formulir-donasi/')
+        self.client.login(username="AdhytiaLs",password="lss12345")
+
         payload = {
             "idDonasi": 1,
             "status": "Menunggu pengiriman",
@@ -109,7 +145,7 @@ class DonasiKontributorTest(TestCase):
 
         self.assertEqual(donasi.status, "Menunggu persetujuan lembaga sosial")
 
-        response = Client().post('/donasi/lembaga-sosial/formulir-donasi/',payload)
+        response = self.client.post('/donasi/lembaga-sosial/formulir-donasi/',payload)
         self.assertEqual(response.status_code,200)
 
         for e in DonasiModel.objects.all():
@@ -119,6 +155,9 @@ class DonasiKontributorTest(TestCase):
 
 
     def testLembagaSosialTolakDonasi(self):
+        response = self.client.get('/donasi/lembaga-sosial/formulir-donasi/')
+        self.client.login(username="AdhytiaLs",password="lss12345")
+
         payload = {
             "idDonasi": 1,
             "status": "Ditolak",
@@ -130,7 +169,7 @@ class DonasiKontributorTest(TestCase):
 
         self.assertEqual(donasi.status, "Menunggu persetujuan lembaga sosial")
 
-        response = Client().post('/donasi/lembaga-sosial/formulir-donasi/',payload)
+        response = self.client.post('/donasi/lembaga-sosial/formulir-donasi/',payload)
         self.assertEqual(response.status_code,200)
 
         for e in DonasiModel.objects.all():
@@ -140,6 +179,9 @@ class DonasiKontributorTest(TestCase):
 
 
     def testAdminValidasiPembatalanDonasi(self):
+        response = self.client.get('/donasi/admin/pembatalan-donasi/')
+        self.client.login(username="AdhytiaAdmin",password="admin12345")
+
         status = "Permohonan pembatalan donasi dari donatur telah ditolak karena alasan yang tidak valid. Harap tunggu respon dari lembaga sosial"
         payload = {
             "idDonasi": 1,
@@ -152,7 +194,7 @@ class DonasiKontributorTest(TestCase):
 
         self.assertEqual(donasi.status, "Menunggu persetujuan lembaga sosial")
 
-        response = Client().post('/donasi/admin/pembatalan-donasi/',payload)
+        response = self.client.post('/donasi/admin/pembatalan-donasi/',payload)
         self.assertEqual(response.status_code,200)
 
         for e in DonasiModel.objects.all():
@@ -163,5 +205,5 @@ class DonasiKontributorTest(TestCase):
     
     def testDeleteAllDonasi(self):
         self.assertEqual(DonasiModel.objects.all().count(),1)
-        response = Client().get('/donasi/delete-all/')
+        response = self.client.get('/donasi/delete-all/')
         self.assertEqual(DonasiModel.objects.all().count(),0)
