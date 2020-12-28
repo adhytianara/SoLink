@@ -28,44 +28,66 @@
             </div>
         </div>
 
-        <div id="cardDonasi" class="card">
+        {% for d in data %}
+        <div id="cardDonasi" class="card mb-4">
             <div class="card-body">
                 <div class="row">
                     <div class="col-10">
                         <p class="font-weight-bold">Nama donatur : </p>
-                        <p class="mb-2">Adhytia Wana</p>
+                        <p class="mb-2">{{d.namaDonatur}}</p>
 
                         <p class="font-weight-bold">Status donasi : </p>
-                        <p id="statusDonasi" class="mb-2">Menunggu persetujuan lembaga sosial</p>
+                        <p id="statusDonasi" class="mb-2">{{d.status}}</p>
 
                         <p class="font-weight-bold">Tanggal donasi : </p>
-                        <p class="mb-2s">dd/mm/yyy</p>
+                        <p class="mb-2">{{d.tanggalDonasi}}</p>
 
                         <p class="font-weight-bold">Jenis barang : </p>
-                        <p class="mb-2s">Pakaian</p>
+                        <p class="mb-2">{{d.jenisBarang}}</p>
 
                         <p class="font-weight-bold">Alasan pembatalan : </p>
-                        <p class="mb-2s">Berubah pikiran</p>
+                        <p class="">{{d.alasanPembatalan}}</p>
                     </div>
                     <div class="col-2">
-                        <button onclick="pembatalan()" id="btnTolak" type="button" class="btn btn-secondary mb-3">
+                        <button onclick="tolakPembatalan('{{d.id}}')" id="btnTolak" type="button"
+                            class="btn btn-secondary mb-3">
                             <p class="card-text">Tolak pembatalan</p>
                         </button>
 
-                        <button onclick="pembatalan()" id="btnSetujui" type="button" class="btn btn-danger mb-3">
+                        <button onclick="setujuiPembatalan('{{d.id}}')" id="btnSetujui" type="button"
+                            class="btn btn-danger mb-3">
                             <p class="card-text">Setujui pembatalan</p>
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
+        {% endfor %}
     </div>
 </body>
 
 <script>
-    function pembatalan() {
-        document.getElementById("cardDonasi").style.display = "none";
+    const tolakPembatalan = (idDonasi) => {
+        var payload = {
+            idDonasi: idDonasi,
+            status: "Permohonan pembatalan donasi dari donatur telah ditolak karena alasan yang tidak valid. Harap tunggu respon dari lembaga sosial"
+        };
+        sendPOST(payload);
+    }
+    const setujuiPembatalan = (idDonasi) => {
+        var payload = {
+            idDonasi: idDonasi,
+            status: "Permohonan pembatalan donasi dari donatur telah disetujui oleh admin. Proses donasi dibatalkan"
+        };
+        sendPOST(payload);
+    }
+    const sendPOST = (data) => {
+        $.ajax({
+            type: "POST",
+            url: "/donasi/admin/pembatalan-donasi/",
+            data: data
+        })
+        location.reload()
     }
 </script>
 
