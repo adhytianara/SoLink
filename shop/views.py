@@ -11,7 +11,7 @@ from django.db.utils import OperationalError
 
 # Create your views here.
 try:
-    penggunaModel = User.objects.get(username='kontributor')
+    penggunaModel = User.objects.create(username='kontributor', password="hahihuheho")
     kontributorModel = KontributorModel.objects.get(pengguna=penggunaModel)
     kontributor = Kontributor(kontributorModel, "namaKontributor", penggunaModel.email, penggunaModel.username, penggunaModel.password, "08123456789", "Kampus Baru UI, Margonda Raya, Depok 12345")
     mitra = Mitra("namaMitra")
