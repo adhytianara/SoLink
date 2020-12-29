@@ -39,7 +39,6 @@ def shoppage(request):
     if request.user.is_authenticated:
         if request.user.profile.role == "Kontributor/Pembeli":
             kontributor = getKontributor(request.user.username)
-            mitra.setListTransaksi(kontributor.getAllTransaksi())
             return render(request, 'shoppage.html',{'data': data, 'keranjang': kontributor.getKeranjang()})
     return render(request, 'shoppage.html',{'data': data})
 

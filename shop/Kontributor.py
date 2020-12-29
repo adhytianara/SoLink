@@ -57,12 +57,8 @@ class Kontributor(Pengguna):
         self.trxDBsync()
         return self.__listTransaksi
     def trxDBsync(self):
-        trxDBcount = self.__kontributorModel.transaksimodel_set.all().count()
-        if trxDBcount == len(self.__listTransaksi):
-            pass
-        else:
-            for el in self.__kontributorModel.transaksimodel_set.all():
-                self.__listTransaksi[el.id] = Transaksi(el)
+        for el in self.__kontributorModel.transaksimodel_set.all():
+            self.__listTransaksi[el.id] = Transaksi(el)
     def pembayaran(self, idTrx):
         self.getTransaksi(idTrx).createPembayaran()
     def konfirmasiSampai(self, idTrx):

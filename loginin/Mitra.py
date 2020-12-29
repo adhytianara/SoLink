@@ -1,6 +1,7 @@
 from .models import *
 from barang.models import Barang
 from shop.models import TransaksiModel
+from shop.Kontributor import Transaksi
 
 class Mitra:
 
@@ -30,18 +31,19 @@ class Mitra:
         return self.barang
     
     def konfirmasiTransaksi(self, idTrx):
+        self.trxDBsync()
         trx = self.transaksi[int(idTrx)]
         trx.ubahStatus("Sedang Dikemas")
     
     def batalkanTransaksi(self, idTrx):
+        self.trxDBsync()
         trx = self.transaksi[int(idTrx)]
         trx.ubahStatus("Dibatalkan")
-    
-    # def inputPengiriman(self):
-    #     return
-
-    def setListTransaksi(self, lstTrx):
-        self.transaksi = lstTrx
 
     def getTransaksi(self, id):
+        self.trxDBsync()
         return self.transaksi[id]
+
+    def trxDBsync(self):
+        for el in TransaksiModel.objects.all():
+            self.transaksi[el.id] = Transaksi(el)
