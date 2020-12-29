@@ -139,7 +139,7 @@
                 },
                 success : function(result) {
                     var id = result['id'];
-                    alert(id.toString());
+                    alert("Transaksi dengan id:" + id.toString() + " berhasil dibuat!");
                     location.replace("{% url 'shop:checkout' id=99999 %}".replace("99999", id.toString()));
                 },
                 error : function() {
