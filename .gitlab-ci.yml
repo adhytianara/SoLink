@@ -19,7 +19,7 @@ Testing:
     - python manage.py collectstatic --no-input
   when: on_success
   script:
-    - coverage run --include="donasi/*","barang/*" manage.py test
+    - coverage run --include="donasi/*","barang/*","article/*" manage.py test
     - coverage report -m
 
 Deployment:
