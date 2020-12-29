@@ -12,15 +12,19 @@ from psycopg2.errors import UniqueViolation
 
 # Create your views here.
 try:
-    penggunaModel = User.objects.create(username='kontributor', password="hahihuheho")
-    keranjang = KeranjangModel.objects.create()
-    kontributorModel = KontributorModel.objects.create(pengguna=penggunaModel, urlFotoDiriDenganKtp="urlFotoDiriDenganKtp", urlFotoKTP="urlFotoKTP", keranjang=keranjang)
+    penggunaModel = User.objects.get(username='kontributor')
+    kontributorModel = KontributorModel.objects.get(pengguna=penggunaModel)
     kontributor = Kontributor(kontributorModel, "namaKontributor", penggunaModel.email, penggunaModel.username, penggunaModel.password, "08123456789", "Kampus Baru UI, Margonda Raya, Depok 12345")
     mitra = Mitra("namaMitra")
     mitra.setListTransaksi(kontributor.getAllTransaksi())
-except (IntegrityError, UniqueViolation, ProgrammingError) as e:
-    penggunaModel = User.objects.get(username='kontributor')
-    kontributorModel = KontributorModel.objects.get(pengguna=penggunaModel)
+except (User.DoesNotExist) as e:
+    penggunaModel = User.objects.create_user(username='kontributor', password="hahihuheho")
+    penggunaModel.save()
+    print(penggunaModel.password)
+    keranjang = KeranjangModel()
+    keranjang.save()
+    kontributorModel = KontributorModel(pengguna=penggunaModel, urlFotoDiriDenganKtp="urlFotoDiriDenganKtp", urlFotoKTP="urlFotoKTP", keranjang=keranjang)
+    kontributorModel.save()
     kontributor = Kontributor(kontributorModel, "namaKontributor", penggunaModel.email, penggunaModel.username, penggunaModel.password, "08123456789", "Kampus Baru UI, Margonda Raya, Depok 12345")
     mitra = Mitra("namaMitra")
     mitra.setListTransaksi(kontributor.getAllTransaksi())
