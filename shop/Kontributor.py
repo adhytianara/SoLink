@@ -23,6 +23,8 @@ class Kontributor(Pengguna):
         self.__urlFotoKTP = kontributorModel.urlFotoKTP
         self.__keranjang = Keranjang(kontributorModel.keranjang)
         self.__listTransaksi = {}
+    def getModel(self):
+        return self.__kontributorModel
     def tambahBarangKeranjang(self, idBarang):
         return self.__keranjang.addBarang(idBarang)
     def getKeranjang(self):
