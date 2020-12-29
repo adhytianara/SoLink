@@ -48,7 +48,7 @@
                     <a href="javascript:pembayaran({{ trx.0 }});">Konfirmasi Pembayaran</a>
                     {% endif %}
                     {% if trx.4 != 'Menunggu Pembayaran' and trx.4 != 'Selesai' and trx.4 != 'Dibatalkan' %}
-                    <a href="javascript:sampai({{ trx.0 }});" style="float: right;">Konfirmasi Sampai</a>
+                    <a href="javascript:sampai({{ trx.0 }}, '{{trx.4}}');" style="float: right;">Konfirmasi Sampai</a>
                     {% endif %}
                 </div>
               </div>
@@ -75,7 +75,11 @@
                 }
             })
         }
-        function sampai(id) {
+        function sampai(id, status) {
+            if (status != "Sedang Dikirim") {
+                alert("Gagal mengkonfirmasi sampai. Coba kembali setelah barang transaksi sampai.");
+                return;
+            }
             $.ajax({
                 type : "GET",
                 url : "/shop/sampai/",
